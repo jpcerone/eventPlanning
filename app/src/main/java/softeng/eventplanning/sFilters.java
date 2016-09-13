@@ -1,14 +1,15 @@
 package softeng.eventplanning;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-public class MainActivity extends AppCompatActivity {
+public class sFilters extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, Search.class);
-        startActivity(intent);
+        setContentView(R.layout.searchfilter);
     }
 
 
