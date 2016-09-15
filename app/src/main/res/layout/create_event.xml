@@ -85,14 +85,16 @@
         android:layout_below="@id/linearLayout"
         android:id="@+id/space3"
         />
-    <Button
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload Event Image"
-        android:id="@+id/imageUpload"
-        android:layout_above="@+id/space4"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/space3"
+        android:layout_above="@+id/buttonLine"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:src="@drawable/generic_party_image"
+         />
 
     <Space
         android:layout_width="500dp"
@@ -102,24 +104,53 @@
         android:id="@+id/space4"
         />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/space3"
-        android:layout_above="@id/imageUpload"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/generic_party_image"
-         />
+    <LinearLayout
+        android:id="@+id/buttonLine"
+        android:orientation="horizontal"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/space4"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Location"
-        android:id="@+id/setLocation"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/space4"
-        android:onClick="setLocation"
-        />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uploadButton"
+            android:src="@android:drawable/ic_menu_upload"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectLocation"
+            android:src="@android:drawable/ic_menu_compass"
+            android:layout_marginLeft="10dp"
+            android:onClick="setLocation"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectDate"
+            android:src="@android:drawable/ic_menu_month"
+            android:layout_marginLeft="10dp"
+            android:onClick="setDate"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectTime"
+            android:src="@android:drawable/ic_menu_recent_history"
+            android:layout_marginLeft="10dp"
+            android:onClick="setTime"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/done"
+            android:src="@android:drawable/ic_input_add"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

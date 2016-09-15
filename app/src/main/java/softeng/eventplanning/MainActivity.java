@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.create_event_time);
     }
 
-    public void done(View v){
+    public void back(View v){
         setContentView(R.layout.create_event);
     }
 }

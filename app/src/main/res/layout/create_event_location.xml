@@ -9,52 +9,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="softeng.eventplanning.MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Select Location"
+        android:id="@+id/textView3"
+        android:layout_above="@id/imageView"
+        android:layout_centerHorizontal="true"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/demo_map_image"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Date"
-            android:id="@+id/button"
-            android:layout_gravity="right|bottom"
-            android:onClick="setDate"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@android:drawable/ic_menu_revert"
+        android:onClick="back"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:id="@+id/button2"
-            android:layout_gravity="left|bottom" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Set Event Location"
-            android:id="@+id/textView3"
-            android:layout_gravity="center_horizontal|top" />
-
-        <ImageView
-            android:layout_width="400dp"
-            android:layout_height="300dp"
-            android:id="@+id/imageView2"
-            android:layout_gravity="center"
-            android:src="@drawable/demo_map_image"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Use Current Location"
-            android:id="@+id/button3"
-            android:layout_gravity="center_horizontal|bottom" />
-
-
-    </FrameLayout>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentLocation"
+        android:layout_alignBottom="@+id/imageButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_menu_mylocation" />
 
 
 </RelativeLayout>
