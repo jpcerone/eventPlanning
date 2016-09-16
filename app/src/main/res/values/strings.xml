@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">eventPlanning</string>
+    <string name="app_name">EBOLA</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="comment1">BYOB, Food will be provided</string>
+    <string name="event1">Football Tailgate</string>
+    <string name="event2">Soccer</string>
+    <string name="comment2">Need 4 more ppl</string>
+    <string name="event3">Stacy\'s Birthday Party</string>
+    <string name="comment3">Cake served at 4 PM</string>
+    <string name="event4">Physics Study Group</string>
+    <string name="comment4">Capen 3rd floor, room 10 ... Mike brought PIZZA!!</string>
 </resources>
