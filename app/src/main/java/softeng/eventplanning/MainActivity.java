@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         spec1.setContent(R.id.layout1);
         tab.addTab(spec1);
 
-        TabHost.TabSpec spec2 = tab.newTabSpec("TAB 2");
-        spec2.setIndicator("TAB 2");
+        TabHost.TabSpec spec2 = tab.newTabSpec("Home");
+        spec2.setIndicator("Home");
         spec2.setContent(R.id.layout2);
         tab.addTab(spec2);
 
