@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void createEvent(){
+    public void createEventClicked(MenuItem item){
         setContentView(R.layout.create_event);
     }
 
@@ -135,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
     public void searchFilter(View view)
     {
         Intent intent = new Intent(this, sFilters.class);
+        startActivity(intent);
+    }
+    public void homePage(View v){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

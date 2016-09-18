@@ -149,7 +149,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/done"
             android:src="@android:drawable/ic_input_add"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:onClick="homePage" />
     </LinearLayout>
 
 

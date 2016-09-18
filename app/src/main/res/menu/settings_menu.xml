@@ -29,7 +29,8 @@
     </item>
     <item
         android:id="@+id/create_event_button"
-        android:title="Create Event" />
+        android:title="Create Event"
+        android:onClick="createEventClicked"/>
     <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
