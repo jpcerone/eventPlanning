@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.view.View;
 
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -106,6 +107,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void settingsClicked(View view){
         // TODO open settings view when clicked
+
+
+    }
+    public void createEvent(){
+        setContentView(R.layout.create_event);
+    }
+
+    public void setLocation(View v){
+        setContentView(R.layout.create_event_location);
+    }
+
+    public void setDate(View v){
+        setContentView(R.layout.create_event_date);
+    }
+
+    public void setTime(View v){
+        setContentView(R.layout.create_event_time);
+    }
+
+    public void back(View v){
+        setContentView(R.layout.create_event);
+
     }
 
 
