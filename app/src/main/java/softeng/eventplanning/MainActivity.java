@@ -23,5 +23,10 @@ public class MainActivity extends AppCompatActivity {
         spec2.setContent(R.id.layout2);
         tab.addTab(spec2);
 
+        TabHost.TabSpec spec3 = tab.newTabSpec("TAB 3");
+        spec3.setIndicator("TAB 3");
+        spec3.setContent(R.id.layout3);
+        tab.addTab(spec3);
+
     }
 }
