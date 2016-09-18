@@ -1,4 +1,5 @@
 package softeng.eventplanning;
+import android.content.Intent;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.searchresultslist, mobileArray);
         ListView listView = (ListView) findViewById(R.id.searchresults);
         listView.setAdapter(adapter);
+
 
     }
     public void searchFilter(View view)
