@@ -1,14 +1,20 @@
 package softeng.eventplanning;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.widget.TabHost;
 
-public class MainActivity extends AppCompatActivity {
+import android.view.Window;
 
+
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         TabHost tab = (TabHost) findViewById(R.id.mainTabs);
@@ -28,5 +34,8 @@ public class MainActivity extends AppCompatActivity {
         spec3.setContent(R.id.layout3);
         tab.addTab(spec3);
 
+
     }
+
+
 }
