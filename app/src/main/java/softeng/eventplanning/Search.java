@@ -3,9 +3,7 @@ package softeng.eventplanning;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,17 +18,11 @@ public class Search extends AppCompatActivity {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.searchresultslist, mobileArray);
-        ListView listView = (ListView) findViewById(R.id.searchresults);
-        listView.setAdapter(adapter);
+
 
     }
 
 
 
-    public void searchFilter(View view)
-    {
-        Intent intent = new Intent(this, sFilters.class);
-        startActivity(intent);
-    }
+
 }

@@ -44,7 +44,7 @@
                     ></include>
                 <include
                     android:id="@+id/layout3"
-                    layout = "@layout/tab3"
+                    layout = "@layout/search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     ></include>

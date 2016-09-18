@@ -17,7 +17,7 @@ public class sFilters extends AppCompatActivity {
     }
     public void filterBack(View view)
     {
-        Intent intent = new Intent(this, Search.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
