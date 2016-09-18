@@ -32,7 +32,7 @@
 
                 <include
                     android:id="@+id/layout1"
-                    layout = "@layout/tab1"
+                    layout = "@layout/sample_event"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     ></include>
