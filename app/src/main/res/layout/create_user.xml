@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Create New User"
+            android:id="@+id/textView11"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_below="@+id/textView11"
+            android:layout_marginTop="57dp"
+            android:text="email address"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2"
+            android:layout_alignLeft="@+id/editText2"
+            android:layout_alignStart="@+id/editText2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="password"
+            android:id="@+id/textView12"
+            android:layout_below="@+id/editText"
+            android:layout_alignLeft="@+id/editText"
+            android:layout_alignStart="@+id/editText"
+            android:layout_marginTop="43dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_below="@+id/textView12"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="re-enter password"
+            android:id="@+id/textView13"
+            android:layout_below="@+id/editText2"
+            android:layout_alignLeft="@+id/editText2"
+            android:layout_alignStart="@+id/editText2"
+            android:layout_marginTop="77dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_below="@+id/textView13"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignStart="@+id/textView13" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MAKE ME"
+            android:id="@+id/button"
+            android:layout_marginTop="64dp"
+            android:layout_below="@+id/editText3"
+            android:layout_centerHorizontal="true"
+            android:clickable="true" />
+
+    </RelativeLayout>
+</LinearLayout>
