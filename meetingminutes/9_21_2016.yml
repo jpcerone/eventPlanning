@@ -1,0 +1,19 @@
+date: September 21, 2016
+meeting_type:instructor"
+attendance: [jpcerone, jawolf, daw24, bcboyle]
+absent: [None]
+excused_absences: [None]
+task_progress: [
+  ]
+issues: [
+  ]
+Notes: Discussed project ideas with Professor Hartloff. He informed us that
+SQLite can use python if we want. We deiscused setting the server up, and 
+using flask for the framework. Professor Harloff told us about the server
+located in the lab at Baldy 19 that would be operational soon. 
+We didnt have any major issues, so we spent the majority of the time 
+brainstorming app features to include sharing location (on/off, ping),
+meeting up for craigslist deals, use as a semester long event for office
+hours, templates for large events like a sport's season, rate attendees in 
+addition to events, using google maps in our app.
+
