@@ -2,17 +2,21 @@ package softeng.eventplanning;
 import android.content.Intent;
 
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.renderscript.ScriptGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TabHost;
-
+import android.util.Log;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.view.View;
-
+import java.io.DataOutputStream;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
@@ -21,7 +25,19 @@ import android.widget.TabHost;
 
 import android.view.Window;
 
+import org.json.JSONObject;
+
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,8 +53,39 @@ public class MainActivity extends AppCompatActivity {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.create_user);
+        final String[] create_user_info = new String[3];
+        final EditText email = (EditText) findViewById(R.id.email);
+        final EditText password = (EditText) findViewById(R.id.password);
+        final EditText username_input = (EditText) findViewById(R.id.username_input);
 
+        Button b = (Button) findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String user_email = email.getText().toString();
+                String user_password = password.getText().toString();
+                String username = username_input.getText().toString();
+                create_user_info[0] = user_email;
+                create_user_info[1] = username;
+                create_user_info[2] = user_password;
+                Log.d("myTag", Arrays.toString(create_user_info));
+
+                CreateAPI asyncT = new CreateAPI();
+                asyncT.setsomething(create_user_info);
+                asyncT.execute();
+
+            }
+
+
+
+
+        });
+
+
+
+    /*
         TabHost tab = (TabHost) findViewById(R.id.mainTabs);
         tab.setup();
 
@@ -67,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter2 = new friendadapter(this, Friends, Friend_list);
         exp_list.setAdapter(adapter2);
-
+    */
 
     }
 
