@@ -69,7 +69,6 @@
         android:layout_height="wrap_content"
         android:text="@string/log_in"
         android:id="@+id/login_button"
-        android:onClick="sendLogin"
         android:layout_weight=".5"
         android:layout_gravity="center_horizontal"/>
 

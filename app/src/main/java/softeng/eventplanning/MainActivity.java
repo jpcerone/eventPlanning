@@ -3,10 +3,13 @@ package softeng.eventplanning;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ExpandableListView;
 import android.widget.ArrayAdapter;
@@ -14,8 +17,11 @@ import android.widget.ListView;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import API.LogInAPI;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +36,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_page);
+        final String[] create_user_info = new String[3];
+        final EditText username_input = (EditText) findViewById(R.id.edit_username);
+        final EditText password = (EditText) findViewById(R.id.edit_password);
+        Button b = (Button) findViewById(R.id.login_button);
+        final LogInAPI asyncT = new LogInAPI();
+        asyncT.setsomething(create_user_info);
+        asyncT.signupActivity(this);
+        b.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.d("CALLED", "yup");
+                String user_password = password.getText().toString();
+                String username = username_input.getText().toString();
+                create_user_info[0] = username;
+                create_user_info[1] = user_password;
+                Log.d("myTag", Arrays.toString(create_user_info));
+                asyncT.execute();
+
+            }
+
+
+        });
         getSupportActionBar().hide();
 
     }
@@ -121,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         */
         // TODO add try catch if user login was successful to call below
+
         setupTabsView(v);
     }
 
