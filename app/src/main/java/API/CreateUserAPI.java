@@ -1,7 +1,12 @@
 package API;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -14,9 +19,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import softeng.eventplanning.CreateNewUser;
+import softeng.eventplanning.signin;
+
 
 public class CreateUserAPI extends AsyncTask<String,String,String> {
     private  String[] marray;
+    private Activity activity;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -25,6 +34,8 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
     public  void setsomething(String[] array){
         marray = array;
     }
+
+    public void signupActivity(Activity a){activity = a;}
 
     @Override
     protected String doInBackground(String ... params) {
@@ -67,14 +78,10 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
                 out.append(line);
             }
 
-            System.out.println(out.toString());
             reader.close();
-
-
-
-            String printy;
-            Log.d("completed", printy= "POSted");
-
+            return out.toString();
+//
+//
 
         }
         catch (Exception e){
@@ -83,9 +90,25 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
 
         return null;
     }
+
     @Override
     protected void onPostExecute(String result) {
-        String okay;
-        Log.d("completed", okay= "okay");
+        System.out.println(result);
+        try{
+            JSONObject response = new JSONObject(result);
+
+             if(response.getInt("code") == 200){
+                activity.startActivity(new Intent(activity,signin.class));
+
+             }
+             else{
+                 Log.d("SUP","false");
+             }
+
+         }
+        catch(Exception e){
+           Log.d("fail","Failed to get JSON Object");
+        }
     }
+
 }

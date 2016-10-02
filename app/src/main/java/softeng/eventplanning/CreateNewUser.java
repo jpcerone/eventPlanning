@@ -27,6 +27,9 @@ public class CreateNewUser extends AppCompatActivity{
         final EditText username_input = (EditText) findViewById(R.id.username);
 
         Button b = (Button) findViewById(R.id.button);
+        final CreateUserAPI asyncT = new CreateUserAPI();
+        asyncT.setsomething(create_user_info);
+        asyncT.signupActivity(this);
         b.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -39,9 +42,6 @@ public class CreateNewUser extends AppCompatActivity{
                 create_user_info[1] = username;
                 create_user_info[2] = user_password;
                 Log.d("myTag", Arrays.toString(create_user_info));
-
-                CreateUserAPI asyncT = new CreateUserAPI();
-                asyncT.setsomething(create_user_info);
                 asyncT.execute();
 
             }

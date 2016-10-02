@@ -160,6 +160,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void createAccount(View v){
+        Intent intent = new Intent(this, CreateNewUser.class);
+        startActivity(intent);
+    }
+
 }
 
 
