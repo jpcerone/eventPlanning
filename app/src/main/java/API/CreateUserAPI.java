@@ -3,24 +3,17 @@ package API;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
+import softeng.eventplanning.MainActivity;
 
-import softeng.eventplanning.CreateNewUser;
-import softeng.eventplanning.signin;
 
 
 public class CreateUserAPI extends AsyncTask<String,String,String> {
@@ -98,7 +91,7 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
 
              if(response.getInt("code") == 200){
-                activity.startActivity(new Intent(activity,signin.class));
+                activity.startActivity(new Intent(activity,MainActivity.class));
 
              }
              else{
