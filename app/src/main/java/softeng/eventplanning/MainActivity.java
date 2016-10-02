@@ -1,27 +1,19 @@
 package softeng.eventplanning;
 import android.content.Intent;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TabHost;
-
-import android.support.v7.widget.Toolbar;
+import android.widget.Button;
+import android.widget.EditText;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import android.view.View;
-
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
-import android.widget.TabHost;
 
-import android.view.Window;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
 
+
+    /*
         TabHost tab = (TabHost) findViewById(R.id.mainTabs);
         tab.setup();
 
@@ -67,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter2 = new friendadapter(this, Friends, Friend_list);
         exp_list.setAdapter(adapter2);
-
+    */
 
     }
 
