@@ -4,7 +4,7 @@
     tools:context="com.example.david.eventPlanning.wall_page">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="99"
         android:title="@string/action_settings"
         app:showAsAction="never">
 
@@ -33,8 +33,8 @@
         android:onClick="createEventClicked"/>
     <item
         android:id="@+id/action_logout"
-        android:orderInCategory="100"
         android:title="@string/log_out"
-        app:showAsAction="never" />
+        android:orderInCategory="100"
+        android:onClick="logoutClicked"/>
 
 </menu>
