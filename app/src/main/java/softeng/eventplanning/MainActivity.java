@@ -1,6 +1,7 @@
 package softeng.eventplanning;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,26 +34,27 @@ public class MainActivity extends AppCompatActivity {
     String[] mobileArray = {"Event 1            Distance:","Event 2            Distance:","Event 3            Distance:","Event 4            Distance:","Event 5            Distance:","Event 6            Distance:","Event 7            Distance:","Event 8            Distance:"};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_page);
         final String[] create_user_info = new String[3];
         final EditText username_input = (EditText) findViewById(R.id.edit_username);
         final EditText password = (EditText) findViewById(R.id.edit_password);
         Button b = (Button) findViewById(R.id.login_button);
-        final LogInAPI asyncT = new LogInAPI();
-        asyncT.setsomething(create_user_info);
-        asyncT.signupActivity(this);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CALLED", "yup");
-                String user_password = password.getText().toString();
-                String username = username_input.getText().toString();
-                create_user_info[0] = username;
-                create_user_info[1] = user_password;
-                Log.d("myTag", Arrays.toString(create_user_info));
-                asyncT.execute();
+                final LogInAPI asyncT = createAsyncTask();
+                asyncT.setsomething(create_user_info);
+                if(asyncT.getStatus() != AsyncTask.Status.RUNNING) {
+                    Log.d("CALLED", "yup");
+                    String user_password = password.getText().toString();
+                    String username = username_input.getText().toString();
+                    create_user_info[0] = username;
+                    create_user_info[1] = user_password;
+                    Log.d("myTag", Arrays.toString(create_user_info));
+                    asyncT.execute();
+                }
 
             }
 
@@ -60,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         });
         getSupportActionBar().hide();
 
+    }
+    public LogInAPI createAsyncTask(){
+        LogInAPI api = new LogInAPI();
+        api.signupActivity(this);
+        return api;
     }
 
     public void eventClicked(View view){
