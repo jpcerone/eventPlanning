@@ -3,10 +3,13 @@ package softeng.eventplanning;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ExpandableListView;
 import android.widget.ArrayAdapter;
@@ -14,8 +17,11 @@ import android.widget.ListView;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import API.LogInAPI;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,40 +36,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_page);
+        final String[] create_user_info = new String[3];
+        final EditText username_input = (EditText) findViewById(R.id.edit_username);
+        final EditText password = (EditText) findViewById(R.id.edit_password);
+        Button b = (Button) findViewById(R.id.login_button);
+        final LogInAPI asyncT = new LogInAPI();
+        asyncT.setsomething(create_user_info);
+        asyncT.signupActivity(this);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("CALLED", "yup");
+                String user_password = password.getText().toString();
+                String username = username_input.getText().toString();
+                create_user_info[0] = username;
+                create_user_info[1] = user_password;
+                Log.d("myTag", Arrays.toString(create_user_info));
+                asyncT.execute();
+
+            }
+
+
+        });
         getSupportActionBar().hide();
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        switch (id) {
-            case R.id.settings_notifications:
-                // TODO go to notifications page
-                Toast.makeText(getApplicationContext(),
-                        "Settings Updated",
-                        Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.settings_themes:
-                // TODO go to theme page
-                Toast.makeText(getApplicationContext(),
-                        "Settings Updated",
-                        Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void eventClicked(View view){
@@ -76,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void createEventClicked(MenuItem item){
-        setContentView(R.layout.create_event);
+        Intent createEventChange = new Intent(this,createEvent.class);
+        startActivity(createEventChange);
     }
 
     public void logoutClicked(MenuItem item){
@@ -85,26 +82,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setLocation(View v){
-        setContentView(R.layout.create_event_location);
+        Intent eventLocationChange = new Intent(this, createEventLocation.class);
+        startActivity(eventLocationChange);
     }
 
     public void setDate(View v){
-        setContentView(R.layout.create_event_date);
+        Intent eventDateChange = new Intent(this, createEventDate.class);
+        startActivity(eventDateChange);
     }
 
     public void setTime(View v){
-        setContentView(R.layout.create_event_time);
+        Intent eventTimeChange = new Intent(this, createEventTime.class);
+        startActivity(eventTimeChange);
     }
 
     public void back(View v){
-        setContentView(R.layout.create_event);
-
-    }
-
-    public void searchFilter(View view)
-    {
-        Intent intent = new Intent(this, sFilters.class);
-        startActivity(intent);
+        Intent createEventChange = new Intent(this,createEvent.class);
+        startActivity(createEventChange);
     }
 
 
@@ -121,42 +115,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         */
         // TODO add try catch if user login was successful to call below
+
         setupTabsView(v);
     }
 
     public void setupTabsView(View v) {
-
-        setContentView(R.layout.activity_main);
         getSupportActionBar().show();
-
-        TabHost tab = (TabHost) findViewById(R.id.mainTabs);
-        tab.setup();
-
-        TabHost.TabSpec spec2 = tab.newTabSpec("Home");
-        spec2.setIndicator("Home");
-        spec2.setContent(R.id.layout2);
-        tab.addTab(spec2);
-
-        TabHost.TabSpec spec1 = tab.newTabSpec("Current Event");
-        spec1.setIndicator("Current Event");
-        spec1.setContent(R.id.layout1);
-        tab.addTab(spec1);
-
-        TabHost.TabSpec spec3 = tab.newTabSpec("Search");
-        spec3.setIndicator("Search");
-        spec3.setContent(R.id.layout3);
-        tab.addTab(spec3);
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.searchresultslist, mobileArray);
-        ListView listView = (ListView) findViewById(R.id.searchresults);
-        listView.setAdapter(adapter);
-
-        exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-        Friends = ListData.getInfo();
-        Friend_list = new ArrayList<String>(Friends.keySet());
-
-        adapter2 = new friendadapter(this, Friends, Friend_list);
-        exp_list.setAdapter(adapter2);
+        Intent tabViewChange = new Intent(this, tabView.class);
+        startActivity(tabViewChange);
 
     }
 

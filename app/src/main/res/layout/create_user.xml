@@ -19,20 +19,6 @@
             android:text="Create New User"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/password"
-            android:layout_alignLeft="@+id/password"
-            android:layout_alignRight="@+id/password"
-            android:layout_alignStart="@+id/password"
-            android:layout_below="@+id/textView11"
-            android:layout_marginTop="57dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:text="email address" />
-
         <TextView
             android:id="@+id/text12"
             android:layout_width="wrap_content"
@@ -89,12 +75,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/username"
-            android:text="Username"
+            android:hint="Username"
             android:ems="10"
             android:layout_alignStart="@+id/email"
             android:layout_alignLeft="@+id/email"
             android:layout_below="@+id/email"
             android:layout_marginTop="30dp"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="57dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="email address"
+            android:layout_below="@+id/textView11"
+            android:layout_alignLeft="@+id/text12"
+            android:layout_alignStart="@+id/text12" />
 
     </RelativeLayout>
 </LinearLayout>

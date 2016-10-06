@@ -7,7 +7,7 @@ package softeng.eventplanning;
         import java.io.InputStreamReader;
         import java.net.HttpURLConnection;
         import java.net.URL;
-        import java.net.URLConnection;
+
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
@@ -39,7 +39,7 @@ public class sendLogin extends AppCompatActivity {
             }
         }).start();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tabed_view);
     }
 
     private String createRequest() throws Exception{
