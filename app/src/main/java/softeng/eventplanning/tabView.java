@@ -68,6 +68,9 @@ public class tabView extends AppCompatActivity {
         Intent intent = new Intent(this, sFilters.class);
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
+    }
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
