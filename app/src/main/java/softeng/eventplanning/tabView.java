@@ -20,7 +20,7 @@ import java.util.List;
  * Created by jpcerone on 10/3/16.
  */
 
-public class tabView extends AppCompatActivity {
+public class tabView extends MainActivity {
     String[] mobileArray = {"Event 1            Distance:","Event 2            Distance:","Event 3            Distance:","Event 4            Distance:","Event 5            Distance:","Event 6            Distance:","Event 7            Distance:","Event 8            Distance:"};
     HashMap<String, List<String>> Friends;
     List<String> Friend_list;
