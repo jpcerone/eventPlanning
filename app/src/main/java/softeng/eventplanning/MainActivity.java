@@ -1,84 +1,98 @@
 package softeng.eventplanning;
-import android.content.Intent;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TabHost;
-
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-import android.view.View;
 
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ExpandableListView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 
-import android.view.Window;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import API.LogInAPI;
+
 
 public class MainActivity extends AppCompatActivity {
+
     HashMap<String, List<String>> Friends;
     List<String> Friend_list;
     ExpandableListView exp_list;
     friendadapter adapter2;
     String[] mobileArray = {"Event 1            Distance:","Event 2            Distance:","Event 3            Distance:","Event 4            Distance:","Event 5            Distance:","Event 6            Distance:","Event 7            Distance:","Event 8            Distance:"};
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.signin_page);
+        final String[] create_user_info = new String[3];
+        final EditText username_input = (EditText) findViewById(R.id.edit_username);
+        final EditText password = (EditText) findViewById(R.id.edit_password);
+        Button b = (Button) findViewById(R.id.login_button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LogInAPI asyncT = createAsyncTask();
+                asyncT.setsomething(create_user_info);
+                if(asyncT.getStatus() != AsyncTask.Status.RUNNING) {
+                    //Log.d("CALLED", "yup");
+                    String user_password = password.getText().toString();
+                    String username = username_input.getText().toString();
+                    create_user_info[0] = username;
+                    create_user_info[1] = user_password;
+                    Log.d("myTag", Arrays.toString(create_user_info));
+                    asyncT.execute();
+                }
 
-        setContentView(R.layout.activity_main);
+            }
 
-        TabHost tab = (TabHost) findViewById(R.id.mainTabs);
-        tab.setup();
 
-        TabHost.TabSpec spec1 = tab.newTabSpec("Current Event");
-        spec1.setIndicator("Current Event");
-        spec1.setContent(R.id.layout1);
-        tab.addTab(spec1);
-
-        TabHost.TabSpec spec2 = tab.newTabSpec("Home");
-        spec2.setIndicator("Home");
-        spec2.setContent(R.id.layout2);
-        tab.addTab(spec2);
-
-        TabHost.TabSpec spec3 = tab.newTabSpec("Search");
-        spec3.setIndicator("Search");
-        spec3.setContent(R.id.layout3);
-        tab.addTab(spec3);
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.searchresultslist, mobileArray);
-        ListView listView = (ListView) findViewById(R.id.searchresults);
-        listView.setAdapter(adapter);
-
-        exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-        Friends = ListData.getInfo();
-        Friend_list = new ArrayList<String>(Friends.keySet());
-
-        adapter2 = new friendadapter(this, Friends, Friend_list);
-        exp_list.setAdapter(adapter2);
-
+        });
+        getSupportActionBar().hide();
 
     }
+    private LogInAPI createAsyncTask(){
+        LogInAPI api = new LogInAPI();
+        api.signupActivity(this);
+        return api;
+    }
+    public void createEventClicked(MenuItem item){
+        Intent createEventChange = new Intent(this,createEvent.class);
+        startActivity(createEventChange);
+    }
 
-
+    public void logoutClicked(MenuItem item){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void setupTabsView(View v) {
+        getSupportActionBar().show();
+        Intent tabViewChange = new Intent(this, tabView.class);
+        startActivity(tabViewChange);
+    }
+    public void createAccount(View v){
+        Intent intent = new Intent(this, CreateNewUser.class);
+        startActivity(intent);
+    }
+    //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.settings_menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -103,49 +117,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void eventClicked(View view){
-        // TODO open event's page when clicked
-    }
-
-    public void settingsClicked(View view){
-        // TODO open settings view when clicked
-
-
-    }
-    public void createEventClicked(MenuItem item){
-        setContentView(R.layout.create_event);
-    }
-
-    public void setLocation(View v){
-        setContentView(R.layout.create_event_location);
-    }
-
-    public void setDate(View v){
-        setContentView(R.layout.create_event_date);
-    }
-
-    public void setTime(View v){
-        setContentView(R.layout.create_event_time);
-    }
-
-    public void back(View v){
-        setContentView(R.layout.create_event);
-
-    }
-
-
-    public void searchFilter(View view)
-    {
-        Intent intent = new Intent(this, sFilters.class);
-        startActivity(intent);
-    }
-    public void homePage(View v){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-
 
 }
 

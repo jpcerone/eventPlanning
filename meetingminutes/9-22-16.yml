@@ -1,0 +1,10 @@
+date: September 22, 2016
+meeting_type: group
+attendance: [bcboye,jawolf,jpcerone,daw24]
+task_process:[
+{ubit:bcboyle, Finished the create user and create event backend},
+{ubit:jawolf, Created database and connected phone and server},
+{ubit:jpcerone, Working on user authentication and created user database},
+{ubit:daw24, created the user login page}]
+issues:[none]
+Notes:[None]

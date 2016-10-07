@@ -2,11 +2,11 @@ package softeng.eventplanning;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+
 
 public class sFilters extends AppCompatActivity {
     @Override
@@ -17,7 +17,7 @@ public class sFilters extends AppCompatActivity {
     }
     public void filterBack(View view)
     {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, tabView.class);
         startActivity(intent);
     }
 
