@@ -43,7 +43,7 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
             jsonobj.put("username",marray[1]);
             jsonobj.put("password",marray[2]);
 
-            String urlparam = new String();
+            String urlparam;
             urlparam = jsonobj.toString();
 
             System.out.println(urlparam);
@@ -73,8 +73,7 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
 
             reader.close();
             return out.toString();
-//
-//
+
 
         }
         catch (Exception e){
