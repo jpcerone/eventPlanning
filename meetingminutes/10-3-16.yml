@@ -1,0 +1,19 @@
+date: October 3, 2016
+meeting_type:ta
+attendance: [jpcerone, jawolf, daw24, bcboyle]
+absent: [None]
+excused_absences: [None]
+task_progress: [ 
+  Four tasks have been closed ((Client) Log in page communication with 
+  server, (Client) Create API for Log-In, (Client)Create API, (Server) 
+  Add New User to Database, (Server) Create Log-In Auth).
+  ]
+issues: [ 
+  None.
+  ]
+Notes: Demo of create user, and log in functionality shown to Ruhan.
+       Task progress for the previous week was discussed. New issues
+        have been discussed and created on github. We are still on 
+        track to finish milestones for sprint two. Decided to implement
+        the lab's server for sprint 3. Submitted form to request
+        server space. 
