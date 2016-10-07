@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 import android.content.Context;
 import API.CreateUserAPI;
+import API.LogInAPI;
 
 /**
  * Created by brandonboyle on 9/22/16.
@@ -29,9 +30,7 @@ public class CreateNewUser extends AppCompatActivity{
         final EditText re_password = (EditText) findViewById(R.id.passwordConf);
 
         Button b = (Button) findViewById(R.id.button);
-        final CreateUserAPI asyncT = new CreateUserAPI();
-        asyncT.setsomething(create_user_info);
-        asyncT.signupActivity(this);
+
         b.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -43,6 +42,8 @@ public class CreateNewUser extends AppCompatActivity{
                     String username = username_input.getText().toString();
                     String re_enter = re_password.getText().toString();
                 if (checkpassword(user_password, re_enter) && (isValidEmail(user_email))) {
+                    final CreateUserAPI asyncT = createAsyncTask();
+                    asyncT.setsomething(create_user_info);
                     create_user_info[0] = user_email;
                     create_user_info[1] = username;
                     create_user_info[2] = user_password;
@@ -67,6 +68,11 @@ public class CreateNewUser extends AppCompatActivity{
 
 
         });
+    }
+    private CreateUserAPI createAsyncTask(){
+        CreateUserAPI api = new CreateUserAPI();
+        api.signupActivity(this);
+        return api;
     }
 
     public final static boolean isValidEmail(CharSequence target) {
