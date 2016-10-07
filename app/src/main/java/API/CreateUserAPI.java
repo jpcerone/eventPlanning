@@ -1,9 +1,12 @@
 package API;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -94,7 +97,11 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
 
              }
              else{
+                 int duration = Toast.LENGTH_SHORT;
                  Log.d("SUP","false");
+                 Context context = activity.getApplication();
+                 Toast.makeText(context,response.getString("message"),duration).show();
+
              }
 
          }
