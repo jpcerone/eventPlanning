@@ -35,7 +35,7 @@ public class LogInAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String("http://10.0.2.2:5000/login");
+        String urlstring = new String("http://128.205.44.21:1032/login");
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
