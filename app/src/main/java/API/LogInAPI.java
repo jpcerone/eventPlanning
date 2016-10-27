@@ -1,9 +1,11 @@
 package API;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -67,7 +69,7 @@ public class LogInAPI extends AsyncTask<String,String,String> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
             StringBuilder out = new StringBuilder();
-            String line = new String();
+            String line;
 
             while((line = reader.readLine()) != null){
                 out.append(line);
@@ -90,14 +92,18 @@ public class LogInAPI extends AsyncTask<String,String,String> {
         System.out.println(result);
         try{
             JSONObject response = new JSONObject(result);
-
              if(response.getInt("code") == 200){
                  Log.d("SUP","true");
-                activity.startActivity(new Intent(activity,tabView.class));
+                 activity.startActivity(new Intent(activity,tabView.class));
 
              }
              else{
+                 int duration = Toast.LENGTH_SHORT;
+                 Context context = activity.getApplication();
+                 Toast.makeText(context,response.getString("message"),duration).show();
+
                  Log.d("SUP","false");
+
              }
 
          }

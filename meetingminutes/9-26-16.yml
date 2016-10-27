@@ -1,0 +1,20 @@
+date: September 26, 2016
+meeting_type:ta
+attendance: [jpcerone, jawolf, daw24, bcboyle]
+absent: [None]
+excused_absences: [None]
+task_progress: [ 
+  Five tasks have been closed (Create repository for server, Create
+  user sign up view, create user login view, server/client establish
+  basic connection, configure SQLight.
+  ]
+issues: [ 
+  None.
+  ]
+Notes: Will link code updates to closed tasks. Next meeting we will
+       display how app communicates with server. Tasks were asigned for 
+       next week. David will work on sending log in information to 
+       server for authentication. Brandon will be working on an API 
+       for user creation. Joe will work on database of user information. 
+       Josh will work on the server handlers. We will keep the version 
+       number the same for the app and the server.

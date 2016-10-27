@@ -1,0 +1,14 @@
+date: September 29, 2016
+meeting_type:group
+attendance: [jpcerone, jawolf, daw24, bcboyle]
+absent: [None]
+excused_absences: [None]
+task_progress: [ 
+  Progress has been made on all tasks but none have been closed.
+  ]
+issues: [ 
+  None.
+  ]
+Notes: LoginPage and createUser pages have been created. They will 
+       need to be added to the rest of the app pages. Server is set 
+       up. Attempting to connect to server from app.

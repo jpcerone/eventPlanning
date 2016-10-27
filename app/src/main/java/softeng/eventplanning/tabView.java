@@ -20,7 +20,7 @@ import java.util.List;
  * Created by jpcerone on 10/3/16.
  */
 
-public class tabView extends AppCompatActivity {
+public class tabView extends MainActivity {
     String[] mobileArray = {"Event 1            Distance:","Event 2            Distance:","Event 3            Distance:","Event 4            Distance:","Event 5            Distance:","Event 6            Distance:","Event 7            Distance:","Event 8            Distance:"};
     HashMap<String, List<String>> Friends;
     List<String> Friend_list;
@@ -71,37 +71,5 @@ public class tabView extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        switch (id) {
-            case R.id.settings_notifications:
-                // TODO go to notifications page
-                Toast.makeText(getApplicationContext(),
-                        "Settings Updated",
-                        Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.settings_themes:
-                // TODO go to theme page
-                Toast.makeText(getApplicationContext(),
-                        "Settings Updated",
-                        Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-*/
 
 }

@@ -1,0 +1,15 @@
+date: September 19, 2016
+meeting_type: ta meeting
+attendance: [bcboyle, jawolf, jpcerone]
+absent: [<ubit4>, <ubit5>, <ubit6>]
+excused_absences: [ 
+  {ubit: <daw24>, reason: Had doctors appointment}
+  ]
+task_progress: [ 
+  {ubit: <bcb>, progress: Discussed issues},
+  {ubit: <jpcerone>, progress: Discussed Issues},
+  {ubit: <jawolf>, progress:Discussed Issues},
+  ]
+
+issues: [ Talked about future Issues with Ruhan
+  ]
