@@ -42,6 +42,8 @@
                         android:text="@string/event1"
                         android:textAlignment="center"
                         android:textSize="30sp" />
+                        <!-- android:text="wallEventName" -->
+
 
                     <ImageView
                         android:id="@+id/imageView1"

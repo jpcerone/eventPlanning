@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import API.HomeWallAPI;
+
 /**
  * Created by jpcerone on 10/3/16.
  */
@@ -37,6 +39,8 @@ public class tabView extends MainActivity {
 
         TabHost.TabSpec spec2 = tab.newTabSpec("Home");
         spec2.setIndicator("Home");
+        final HomeWallAPI asyncT = createAsyncTask();
+        asyncT.execute();
         spec2.setContent(R.id.layout2);
         tab.addTab(spec2);
 
@@ -70,6 +74,12 @@ public class tabView extends MainActivity {
     }
     @Override
     public void onBackPressed() {
+    }
+
+    private HomeWallAPI createAsyncTask(){
+        HomeWallAPI api = new HomeWallAPI();
+        api.displayActivity(this);
+        return api;
     }
 
 }
