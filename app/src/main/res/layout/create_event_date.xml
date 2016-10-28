@@ -10,14 +10,6 @@
     tools:context="softeng.eventplanning.MainActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Set Date"
-        android:id="@+id/textView"
-        android:layout_centerHorizontal="true"/>
-
     <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,5 +26,14 @@
         android:layout_alignParentLeft="true"
         android:src="@android:drawable/ic_menu_revert"
         android:onClick="back"/>
+
+    <TextView
+        android:text="date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:id="@+id/dateview" />
 
 </RelativeLayout>

@@ -38,8 +38,7 @@
         android:text="Alert Me Of New Arrivals:"
         android:id="@+id/switch2"
         android:layout_below="@+id/space"
-        android:layout_alignParentRight="true"
-         />
+        android:layout_alignParentRight="true" />
 
     <Space
         android:layout_width="500dp"
