@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class createEventDate extends AppCompatActivity {
 private String mjson_date;
+private String mjosn_time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +26,9 @@ private String mjson_date;
         cur_date = (TextView) findViewById(R.id.dateview);
         long date = calendar.getDate();
         calendar.setDate(date);
-
-
+        final TextView time;
+        time = (TextView) findViewById(R.id.timer);
+        mjosn_time = time.getText().toString();
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
@@ -45,9 +47,12 @@ private String mjson_date;
     }
     public void back(View v){
 
-        Intent createEventChange = new Intent(this,createEvent.class);
+        Intent createEventChange = new Intent(createEventDate.this,createEvent.class);
         createEventChange.putExtra("JSON_DATE", mjson_date);
-
+        createEventChange.putExtra("JSON_TIME", mjosn_time);
+    //    setResult(createEventDate.RESULT_OK,createEventChange);
         startActivity(createEventChange);
+        //finish();
+
     }
 }

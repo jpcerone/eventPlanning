@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import API.CreateEventAPI;
@@ -46,6 +47,7 @@ private String malerts;
         malerts = "no";
         final String desc = description.getText().toString();
         final String title = eventTitle.getText().toString();
+
 
         final SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
@@ -125,13 +127,15 @@ private String malerts;
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = getIntent();
 
-                Bundle bundle = getIntent().getExtras();
-                String date = bundle.getString("JSON_DATE");
-                String time = bundle.getString("JSON_TIME");
+                String date =  intent.getStringExtra("JSON_DATE");
+                String time = intent.getStringExtra("JSON_TIME");
+
+
 
                 create_event[0] = date;
-                create_event[1] = "12:34";
+                create_event[1] = time;
                 create_event[2] = "location";
                 create_event[3] = title;
                 create_event[4] = desc;
@@ -156,22 +160,18 @@ private String malerts;
     }
     public void setLocation(View v){
         Intent eventLocationChange = new Intent(this, createEventLocation.class);
-        startActivity(eventLocationChange);
+        startActivityForResult(eventLocationChange, 1);
     }
     public void setDate(View v){
         Intent eventDateChange = new Intent(this, createEventDate.class);
-        startActivity(eventDateChange);
+        startActivityForResult(eventDateChange,2);
     }
-    public void setTime(View v){
-        Intent eventTimeChange = new Intent(this, createEventTime.class);
-        startActivity(eventTimeChange);
-    }
+
 
     private CreateEventAPI createAsyncTask(){
         CreateEventAPI api = new CreateEventAPI();
         api.signupActivity(this);
         return api;
     }
-
 
 }
