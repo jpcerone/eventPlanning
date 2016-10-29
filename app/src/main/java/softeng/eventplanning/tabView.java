@@ -1,8 +1,10 @@
 package softeng.eventplanning;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,23 +12,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import API.EventAPI;
 
 /**
  * Created by jpcerone on 10/3/16.
  */
 
 public class tabView extends MainActivity {
+    String[] friends = {"Test"};
     String[] mobileArray = {"Event 1            Distance:","Event 2            Distance:","Event 3            Distance:","Event 4            Distance:","Event 5            Distance:","Event 6            Distance:","Event 7            Distance:","Event 8            Distance:"};
-    HashMap<String, List<String>> Friends;
-    List<String> Friend_list;
-    ExpandableListView exp_list;
-    friendadapter adapter2;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabed_view);
@@ -54,12 +56,10 @@ public class tabView extends MainActivity {
         ListView listView = (ListView) findViewById(R.id.searchresults);
         listView.setAdapter(adapter);
 
-        exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-        Friends = ListData.getInfo();
-        Friend_list = new ArrayList<String>(Friends.keySet());
-
-        adapter2 = new friendadapter(this, Friends, Friend_list);
-        exp_list.setAdapter(adapter2);
+        EventAPI event = new EventAPI();
+        event.tabviewActivity(this);
+        event.setsomething(1);//NEED TO CHANGE!!
+        event.execute();
 
 
     }
@@ -72,4 +72,23 @@ public class tabView extends MainActivity {
     public void onBackPressed() {
     }
 
+    public void updateEvent(Map<String,Object> eventInfo){
+
+        TextView name = (TextView) findViewById(R.id.eventName);
+        name.setText("" + eventInfo.get("name"));
+        TextView owner = (TextView) findViewById(R.id.eventOwner);
+        owner.setText("" + eventInfo.get("owner"));
+        TextView date = (TextView) findViewById(R.id.eventDate);
+        date.setText("" + eventInfo.get("date"));
+        TextView time = (TextView) findViewById(R.id.eventTime);
+        time.setText("" + eventInfo.get("time"));
+        TextView descr = (TextView) findViewById(R.id.eventDescr);
+        descr.setText("" + eventInfo.get("description"));
+        String list = (String) eventInfo.get("listofPart");
+        friends = list.split("\\s+");
+        ArrayAdapter adapter2 = new ArrayAdapter<String>(this, R.layout.event_friend_list, friends);
+        ListView listView2 = (ListView) findViewById(R.id.eventFriendsList);
+        listView2.setAdapter(adapter2);
+
+    }
 }

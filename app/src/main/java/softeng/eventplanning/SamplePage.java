@@ -19,23 +19,10 @@ import java.util.List;
  */
 public class SamplePage extends AppCompatActivity {
 
-    //HashMap<String, List<String>> Friends;
-    //List<String> Friend_list;
-    //ExpandableListView exp_list;
-    //friendadapter adapter;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sample_event);
-        //exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-        //Friends = ListData.getInfo();
-        //Friend_list = new ArrayList<String>(Friends.keySet());
-        //adapter = new friendadapter(this, Friends, Friend_list);
-        //exp_list.setAdapter(adapter);
 
     }
 }
