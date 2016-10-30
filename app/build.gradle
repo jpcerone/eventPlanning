@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "softeng.eventplanning"
-        minSdkVersion 15
+        minSdkVersion 23
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
