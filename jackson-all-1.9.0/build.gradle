@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('jackson-all-1.9.0.jar'))

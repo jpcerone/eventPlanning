@@ -1,0 +1,16 @@
+date: October 13, 2016
+meeting_type: group
+attendance: [jpcerone, jawolf, daw24, bcboyle]
+absent: [None]
+excused_absences: [None]
+task_progress: [
+  Six tasks have been closed ((Client)Check re-entered password
+  is correct, (Client/Server)Failure to login twice bug, (Client)
+  Fix actionbar on tabView, (Server)Password Protection, (Client)
+  Back button on tabView takes you back to login page bug, (Server)
+  Check for duplicate username.
+  ]
+issues: [None]
+Notes: [
+  Work session after meeting to set up new tasks.
+  ]

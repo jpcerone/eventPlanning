@@ -1,119 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="Test Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventName"
+        android:textSize="36sp" />
+
+    <TextView
+        android:text="Event Owner:Test User"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventOwner"
+        android:textSize="24sp" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="322dp">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Event"
-                android:id="@+id/textView5"
-                android:layout_marginLeft="54dp"
-                android:layout_marginStart="54dp"
-                android:layout_alignTop="@+id/textView6"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/textView6"
-                android:text="Basketball"
-                android:layout_marginTop="46dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="30dp"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentStart="false" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="When"
-                android:id="@+id/textView7"
-                android:layout_marginTop="64dp"
-                android:layout_below="@+id/textView5"
-                android:layout_alignLeft="@+id/textView5"
-                android:layout_alignStart="@+id/textView5" />
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="400dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="4pm"
-                android:id="@+id/textView8"
-                android:layout_alignTop="@+id/textView7"
-                android:layout_alignLeft="@+id/textView6"
-                android:layout_alignStart="@+id/textView6"
-                android:textSize="30dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/mvjhf"
+                    android:id="@+id/eventMapView"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Where"
-                android:id="@+id/textView9"
-                android:layout_above="@+id/ratingBar"
-                android:layout_alignLeft="@+id/textView7"
-                android:layout_alignStart="@+id/textView7" />
+                <TextView
+                    android:text="Test Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/eventDate"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/eventMapView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginStart="17dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="At the park"
-                android:id="@+id/textView10"
-                android:layout_alignTop="@+id/textView9"
-                android:layout_alignLeft="@+id/textView8"
-                android:layout_alignStart="@+id/textView8"
-                android:textSize="30dp" />
+                <TextView
+                    android:text="Test Time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eventTime"
+                    android:textSize="18sp"
+                    android:layout_alignBaseline="@+id/eventDate"
+                    android:layout_alignBottom="@+id/eventDate"
+                    android:layout_centerHorizontal="true" />
 
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eventDescr"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet hendrerit laoreet. Maecenas ullamcorper, velit sed hendrerit convallis, dolor diam gravida elit, sed facilisis enim ipsum eu arcu. Sed tempor lectus eget felis ultricies, vel volutpat nisl aliquet. Maecenas eu nibh et ipsum molestie commodo vitae imperdiet lacus. Nunc dictum.  "
+                    android:layout_below="@+id/eventDate" />
 
-        </RelativeLayout>
-    </LinearLayout>
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/eventFriendsList"
+                    android:layout_marginTop="27dp"
+                    android:layout_below="@+id/eventDescr"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="134dp"
-        android:layout_gravity="center_horizontal">
+            </RelativeLayout>
 
-        <ExpandableListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/exp_list" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/mvjhf" />
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>
