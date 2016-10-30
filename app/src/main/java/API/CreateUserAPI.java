@@ -35,7 +35,8 @@ public class CreateUserAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String("http://128.205.44.21:1032/create-user");
+        String urlstring = new String(API.serverIP+"/create-user");
+
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 

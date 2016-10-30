@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Event Planning.iml" filepath="$PROJECT_DIR$/Event Planning.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/eventPlanning.iml" filepath="$PROJECT_DIR$/eventPlanning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eventPlanningReal.iml" filepath="$PROJECT_DIR$/eventPlanningReal.iml" />
     </modules>
   </component>
 </project>
