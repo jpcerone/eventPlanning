@@ -1,0 +1,13 @@
+date: October 27,2016
+meeting_type: TA
+attendance: [bcboyle,jpcerone,daw24,jawolf]
+absent: 
+excused_absences: 
+task_progress: [ 
+  {ubit: bcboyle, progress: Nearly completed API for client side event creation,
+  {ubit: jpcerone, progress: },
+  {ubit: jawolf, progress: Completed API for retreiving map images via google's API},
+  {ubit: daw24, progress: Made progress on event retreival API and homepage event display},
+  ]
+
+issues: [ NONE ]
