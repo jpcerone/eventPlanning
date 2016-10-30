@@ -1,0 +1,13 @@
+date: October 20,2016
+meeting_type: group meeting
+attendance: [bcboyle,jpcerone,daw24,jawolf]
+absent: [None]
+excused_absences
+task_progress: [ 
+  {ubit: bcboyle, Made progress on the create event API for the client,
+  {ubit: jpcerone, progress: Completed event storage API on the sever},
+  {ubit: jawolf, progress: Completed event fetching API on the server },
+  {ubit: daw24, progress: Made progress on event display API},
+  ]
+
+issues: [ NONE ]
