@@ -5,4 +5,6 @@ package API;
  */
 
 public class API {
+    public static String serverIP = "http://128.205.44.21:1032";
+
 }

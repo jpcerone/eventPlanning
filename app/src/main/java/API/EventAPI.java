@@ -48,7 +48,7 @@ public class EventAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String("http://10.0.2.2:5000/get-event/"+id);
+        String urlstring = new String(API.serverIP+"/get-event/"+id);
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
@@ -104,14 +104,9 @@ public class EventAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
 
             if(response.getInt("code") == 200){
-                System.out.println("Got here!");
                 Type mapType = new TypeToken<Map<String,Object>>(){}.getType();
                 Gson gson = new Gson();
                 eventMap = gson.fromJson(response.getString("event"),mapType);
-                System.out.println("eventMap:"+eventMap);
-                System.out.println("name"+eventMap.get("name"));
-
-
                 activity.updateEvent(eventMap);
 
             }
