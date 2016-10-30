@@ -19,7 +19,42 @@ import API.LogInAPI;
 /**
  * Created by David on 10/27/2016.
  */
+public class wallItem{
+    private String event_title;
+    private int event_pic_id;
+    private String event_desc;
 
+    public wallItem(String event_title, int event_pic_id, String event_desc){
+        this.event_title = event_title;
+        this.event_pic_id = event_pic_id;
+        this.event_desc = event_desc;
+    }
+
+    public String getEvent_title(){
+        return event_title;
+    }
+
+    public int getEvent_pic_id(){
+        return event_pic_id;
+    }
+
+    public String getEvent_desc(){
+        return event_desc;
+    }
+
+    public void setEvent_title(String event_title){
+        this.event_title = event_title;
+    }
+
+    public void setEvent_pic_id(int event_pic_id){
+        this.event_pic_id = event_pic_id;
+    }
+
+    public void setEvent_desc(String event_desc){
+        this.event_desc = event_desc;
+    }
+}
+/*
 public class createWallXML extends AppCompatActivity {
 
     public void onCreate(Bundle savedState) {
@@ -53,3 +88,4 @@ public class createWallXML extends AppCompatActivity {
     }
 
 }
+*/
