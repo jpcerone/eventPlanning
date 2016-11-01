@@ -18,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
+import softeng.eventplanning.LoggedInUser;
 import softeng.eventplanning.tabView;
 
 
@@ -95,6 +96,15 @@ public class LogInAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
              if(response.getInt("code") == 200){
                  Log.d("SUP","true");
+                 LoggedInUser.setUsername(response.getString("username"));
+                 LoggedInUser.setBio(response.getString("bio"));
+                 LoggedInUser.setBirthday(response.getString("dob"));
+                 LoggedInUser.setCurrentEventid(response.getString("currentEvent"));
+                 LoggedInUser.setfName(response.getString("fName"));
+                 LoggedInUser.setlName(response.getString("lName"));
+                 LoggedInUser.setFriendsList(response.getString("friendsList"));
+                 LoggedInUser.setUserid(response.getString("id"));
+                 LoggedInUser.setPhone(response.getString("phone"));
                  activity.startActivity(new Intent(activity,tabView.class));
 
              }

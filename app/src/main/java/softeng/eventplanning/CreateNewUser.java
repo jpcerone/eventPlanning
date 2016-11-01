@@ -21,6 +21,8 @@ public class CreateNewUser extends AppCompatActivity{
 
     public void onCreate(Bundle savedState) {
 
+
+
         super.onCreate(savedState);
         setContentView(R.layout.create_user);
         final String[] create_user_info = new String[3];

@@ -36,5 +36,10 @@
         android:title="@string/log_out"
         android:orderInCategory="100"
         android:onClick="logoutClicked"/>
+    <item
+        android:id="@+id/add_friend"
+        android:title="Add Friend"
+        android:orderInCategory="100"
+        android:onClick="addFriendClicked"/>
 
 </menu>
