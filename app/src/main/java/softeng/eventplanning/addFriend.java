@@ -7,12 +7,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import API.AddFriendAPI;
 
 public class addFriend extends AppCompatActivity {
 
@@ -22,8 +25,21 @@ public class addFriend extends AppCompatActivity {
         setContentView(R.layout.add_friend);
 
     }
-    public void addFriendUsernameButtonClicked(){
-
+    public void addFriendUsernameButtonClicked(View v){
+        System.out.println("Worked!");
+        AddFriendAPI friendAPI = new AddFriendAPI();
+        friendAPI.signupActivity(this);
+        EditText friendUserName = (EditText) findViewById(R.id.newFriendUsername);
+        System.out.println(friendUserName.getText().toString());
+        System.out.println("LoggedInUser List:"+LoggedInUser.friendListRaw);
+        if(LoggedInUser.friendListRaw.equals("")){
+            friendAPI.setFriendList(friendUserName.getText().toString());
+        }
+        else {
+            friendAPI.setFriendList(LoggedInUser.friendListRaw + " " + friendUserName.getText().toString());
+        }
+        LoggedInUser.addFriend(friendUserName.getText().toString());
+        friendAPI.execute();
 
     }
 }

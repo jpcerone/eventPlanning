@@ -33,5 +33,6 @@
         android:layout_marginTop="44dp"
         android:id="@+id/addFriendButton"
         android:layout_below="@+id/newFriendUsername"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="addFriendUsernameButtonClicked"/>
 </RelativeLayout>
