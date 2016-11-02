@@ -17,13 +17,8 @@
                 android:id="@+id/settings_themes"
                 android:title="Theme Settings" />
 
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Public/Private" />
+
+
 
         </menu>
     </item>
@@ -41,5 +36,9 @@
         android:title="Add Friend"
         android:orderInCategory="100"
         android:onClick="addFriendClicked"/>
+    <item
+        android:id="@+id/accont_settings"
+        android:title="Account"
+        android:onClick="accountSettingsCLicked"/>
 
 </menu>
