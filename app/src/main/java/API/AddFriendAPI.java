@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -17,28 +16,26 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
 import softeng.eventplanning.LoggedInUser;
 import softeng.eventplanning.tabView;
 
 
-public class LogInAPI extends AsyncTask<String,String,String> {
-    private  String[] marray;
+public class AddFriendAPI extends AsyncTask<String,String,String> {
+    private  String friendsList;
     private Activity activity;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(String[] array){
-        marray = array;
+    public  void setFriendList(String friendsListinput){ friendsList = friendsListinput;
     }
 
     public void signupActivity(Activity a){activity = a;}
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/login");
+        String urlstring = new String(API.serverIP+"/add-friend/"+LoggedInUser.userid);
 
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
@@ -46,10 +43,9 @@ public class LogInAPI extends AsyncTask<String,String,String> {
 
         try{
 
-            jsonobj.put("username",marray[0]);
-            jsonobj.put("password",marray[1]);
+            jsonobj.put("friendsList",friendsList);
 
-            String urlparam = new String();
+            String urlparam;
             urlparam = jsonobj.toString();
 
             System.out.println(urlparam);
@@ -71,7 +67,7 @@ public class LogInAPI extends AsyncTask<String,String,String> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
             StringBuilder out = new StringBuilder();
-            String line;
+            String line = new String();
 
             while((line = reader.readLine()) != null){
                 out.append(line);
@@ -94,33 +90,22 @@ public class LogInAPI extends AsyncTask<String,String,String> {
         System.out.println(result);
         try{
             JSONObject response = new JSONObject(result);
-             if(response.getInt("code") == 200){
-                 Log.d("SUP","true");
-                 LoggedInUser.setUsername(response.getString("username"));
-                 LoggedInUser.setBio(response.getString("bio"));
-                 LoggedInUser.setBirthday(response.getString("dob"));
-                 LoggedInUser.setCurrentEventid(response.getString("currentEvent"));
-                 LoggedInUser.setfName(response.getString("fName"));
-                 LoggedInUser.setlName(response.getString("lName"));
-                 LoggedInUser.setFriendsList(response.getString("friendsList"));
-                 LoggedInUser.setUserid(response.getString("id"));
-                 LoggedInUser.setPhone(response.getString("phone"));
-                 LoggedInUser.setFriendsListRaw(response.getString("friendsList"));
-                 activity.startActivity(new Intent(activity,tabView.class));
 
-             }
-             else{
-                 int duration = Toast.LENGTH_SHORT;
-                 Context context = activity.getApplication();
-                 Toast.makeText(context,response.getString("message"),duration).show();
+            if(response.getInt("code") == 200){
+                activity.startActivity(new Intent(activity,tabView.class));
 
-                 Log.d("SUP","false");
+            }
+            else{
+                int duration = Toast.LENGTH_SHORT;
+                Log.d("SUP","false");
+                Context context = activity.getApplication();
+                Toast.makeText(context,response.getString("message"),duration).show();
 
-             }
+            }
 
-         }
+        }
         catch(Exception e){
-           Log.d("fail", ""+ e);
+            Log.d("fail","Failed to get JSON Object");
         }
     }
 
