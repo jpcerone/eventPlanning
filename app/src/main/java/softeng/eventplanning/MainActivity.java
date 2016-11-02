@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void addFriendClicked(MenuItem item){
+        Intent intent = new Intent(this, addFriend.class);
+        startActivity(intent);
+    }
     public void setupTabsView(View v) {
         getSupportActionBar().show();
         Intent tabViewChange = new Intent(this, tabView.class);
