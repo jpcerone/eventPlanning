@@ -32,13 +32,13 @@ public class addFriend extends AppCompatActivity {
         EditText friendUserName = (EditText) findViewById(R.id.newFriendUsername);
         System.out.println(friendUserName.getText().toString());
         System.out.println("LoggedInUser List:"+LoggedInUser.friendListRaw);
+        friendAPI.setNewName(friendUserName.getText().toString());
         if(LoggedInUser.friendListRaw.equals("")){
             friendAPI.setFriendList(friendUserName.getText().toString());
         }
         else {
             friendAPI.setFriendList(LoggedInUser.friendListRaw + " " + friendUserName.getText().toString());
         }
-        LoggedInUser.addFriend(friendUserName.getText().toString());
         friendAPI.execute();
 
     }

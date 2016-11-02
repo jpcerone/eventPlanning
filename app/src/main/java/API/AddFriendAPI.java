@@ -23,6 +23,7 @@ import softeng.eventplanning.tabView;
 public class AddFriendAPI extends AsyncTask<String,String,String> {
     private  String friendsList;
     private Activity activity;
+    private String addedFriend;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -30,6 +31,7 @@ public class AddFriendAPI extends AsyncTask<String,String,String> {
 
     public  void setFriendList(String friendsListinput){ friendsList = friendsListinput;
     }
+    public void setNewName(String s){addedFriend = s;}
 
     public void signupActivity(Activity a){activity = a;}
 
@@ -92,6 +94,7 @@ public class AddFriendAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
 
             if(response.getInt("code") == 200){
+                LoggedInUser.addFriend(addedFriend);
                 activity.startActivity(new Intent(activity,tabView.class));
 
             }
