@@ -5,7 +5,7 @@ package API;
  */
 
 public class API {
-    //public static String serverIP = "http://128.205.44.21:1032";//PROD
-    public static String serverIP = "http://10.0.2.2:5000";//DEV
+    public static String serverIP = "http://128.205.44.21:1032";//PROD
+    //public static String serverIP = "http://10.0.2.2:5000";//DEV
 
 }

@@ -39,7 +39,7 @@
                     ></include>
                 <include
                     android:id="@+id/layout2"
-                    layout = "@layout/wall_page"
+                    layout = "@layout/feed"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     ></include>
