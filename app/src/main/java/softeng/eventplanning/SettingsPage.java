@@ -1,7 +1,15 @@
 package softeng.eventplanning;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import API.AddFriendAPI;
+import API.SettingsAPI;
 
 /**
  * Created by josh on 11/2/16.
@@ -13,6 +21,46 @@ public class SettingsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_page);
 
+
+    }
+    public void updateSettingsButtonClicked(View v){
+        EditText passCheck = (EditText) findViewById(R.id.passCheck1);
+        String pass = passCheck.getText().toString();
+        passCheck = (EditText) findViewById(R.id.passCheck2);
+        if(pass.equals(passCheck.getText().toString())) {
+
+
+            SettingsAPI settingsAPI = new SettingsAPI();
+            settingsAPI.signupActivity(this);
+            String[] accountSettings = new String[8];
+
+            TextView placeHolder;
+
+            //TextView placeHolder = (TextView)findViewById(R.id.usernameInput);
+            accountSettings[0] = LoggedInUser.username;
+            placeHolder = (EditText) findViewById(R.id.passCheck1);
+            accountSettings[1] = placeHolder.getText().toString();
+            placeHolder = (EditText) findViewById(R.id.bday);
+            accountSettings[2] = placeHolder.getText().toString();
+
+            //placeHolder = (TextView) findViewById(R.id.phone);
+            accountSettings[3] = LoggedInUser.phone;
+            placeHolder = (EditText) findViewById(R.id.fname);
+            accountSettings[4] = placeHolder.getText().toString();
+            placeHolder = (EditText) findViewById(R.id.lname);
+            accountSettings[5] = placeHolder.getText().toString();
+            placeHolder = (EditText) findViewById(R.id.bio);
+            accountSettings[6] = placeHolder.getText().toString();
+            placeHolder = (EditText) findViewById(R.id.currentPass);
+            accountSettings[7] = placeHolder.getText().toString();
+            settingsAPI.accountArray(accountSettings);
+            settingsAPI.execute();
+        }
+        else{
+            int duration = Toast.LENGTH_SHORT;
+            Context context = this.getApplication();
+            Toast.makeText(context,"Invalid Password",duration).show();
+        }
 
     }
 
