@@ -116,7 +116,7 @@ public class tabView extends MainActivity {
         for (int i = 0; i < event_titles.size(); i++) {
             WallItem item = new WallItem(event_titles.get(i), event_pics.get(i),
                     event_descs.get(i));
-            System.out.println("Wall Item: "+item);
+            System.out.println("Wall Item title: "+item.getEvent_title());
             wallItems.add(item);
         }
 
