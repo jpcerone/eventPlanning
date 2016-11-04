@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Profile Settings"
-        android:id="@+id/textView12"
+        android:id="@+id/Profile_Settings"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -16,7 +16,7 @@
         android:layout_height="100dp"
         android:id="@+id/userImage"
         android:src="@drawable/blank_user"
-        android:layout_below="@+id/textView12"
+        android:layout_below="@+id/Profile_Settings"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"/>
 
@@ -36,7 +36,7 @@
         android:text="First Name:"
         android:id="@+id/nameText"
 
-        android:layout_below="@+id/textView12"
+        android:layout_below="@+id/Profile_Settings"
         android:layout_toEndOf="@+id/userImage"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"/>
@@ -48,7 +48,7 @@
         android:text="Name"
         android:ems="10"
         android:id="@+id/fname"
-        android:layout_below="@+id/textView12"
+        android:layout_below="@+id/Profile_Settings"
         android:layout_toEndOf="@+id/nameText" />
 
     <TextView
