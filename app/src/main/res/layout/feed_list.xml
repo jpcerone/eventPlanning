@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Test Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedTitle"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/feedImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="txt"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <!--
+    <ImageView
+        android:id="@+id/feedImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_weight="1.25"
+        android:src="@drawable/tailgate" />
+    -->
+
+    <TextView
+        android:id="@+id/feedDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:text="@string/comment1"
+        android:textSize="20sp" />
+</LinearLayout>
+
+
