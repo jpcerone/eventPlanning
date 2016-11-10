@@ -33,7 +33,7 @@ public class tabView extends MainActivity {
     ArrayList event_pics = new ArrayList();
     ArrayList event_descs = new ArrayList();
     ArrayList wallItems = new ArrayList<WallItem>();
-    private ListView listView;
+    //public ListView listView;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +103,7 @@ public class tabView extends MainActivity {
 
     }
 
+
     public void setFeedArrays(Map<String,Object> eventInfo){
 
         System.out.println("1 "+eventInfo);
@@ -121,8 +122,9 @@ public class tabView extends MainActivity {
         }
 
 
-        listView = (ListView) findViewById(R.id.feed_listView);
+        ListView listView = (ListView) findViewById(R.id.feed_listView);
         WallAdapter wAdapter = new WallAdapter(this, wallItems);
+        //WallAdapter wAdapter = new WallAdapter(getApplicationContext(), R.layout.feed_list, wallItems);
         listView.setAdapter(wAdapter);
         //TODO clickng the wall item takes you to event page.
         //listView.setOnClickListener(this);

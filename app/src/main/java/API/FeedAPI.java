@@ -19,7 +19,6 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-//import softeng.eventplanning.WallActivity;
 import softeng.eventplanning.tabView;
 
 /**
@@ -33,40 +32,12 @@ public class FeedAPI extends AsyncTask<String,String,String> {
     private Map<String, Object> feedMap;
     private tabView activity;
 
-    //public void signupActivity(tabView a){activity = a;}
     public void tabviewActivity(tabView a){activity = a;}
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
-/*
-    public ArrayList getEvent_titles(){
-        System.out.println(event_titles);
-        return event_titles;
-    }
-    public ArrayList getEvent_pics(){
-        System.out.println(event_pics);
-        return event_pics;
-    }
-    public ArrayList getEvent_descs(){
-        return event_descs;
-    }
-
-    public void setArrays(Map<String, Object> diction){
-        //HashMap map = new HashMap<>();
-        //HashMap map = (HashMap) diction.get("event");
-        //ArrayList event_titles = new ArrayList();
-        System.out.println(diction);
-        diction = (Map<String, Object>) diction.get("event");
-        System.out.println(diction);
-        event_titles.add(diction.get("name"));
-        System.out.println(event_titles+" API");
-        event_pics.add(diction.get("image"));
-        event_descs.add(diction.get("description"));
-    }
-*/
-
 
     @Override
     protected String doInBackground(String ... params) {
@@ -93,11 +64,9 @@ public class FeedAPI extends AsyncTask<String,String,String> {
 
             reader.close();
             return out.toString();
-
         }
         catch (Exception e){
             Log.d("fail", e.toString());        }
-
 
         return null;
     }
@@ -115,9 +84,6 @@ public class FeedAPI extends AsyncTask<String,String,String> {
                 Gson gson = new Gson();
                 feedMap = gson.fromJson(response.getString("event"), mapType);
                 System.out.println("API "+ feedMap);
-                //I/System.out: {code=200.0, event={arrivalNot=no, date=10/6/2016, description=Come have some fun, bring some chips!, id=1, image=Test, listofPart=Sally Billy Mandy Bert Katie, location=980 Railroad Drive, name=Block Party, owner=Katie, time=3:30}, message=Event Retrieved}
-                // dict should be a map of objects where map[1] is a map event{} with all the event items
-                //WallActivity wa = new WallActivity()
                 activity.setFeedArrays(feedMap);
             }
             else{
@@ -126,13 +92,10 @@ public class FeedAPI extends AsyncTask<String,String,String> {
                 Toast.makeText(context,response.getString("message"),duration).show();
 
                 Log.d("SUP","false");
-
             }
-
         }
         catch(Exception e){
             Log.d("fail", e.toString());
         }
     }
-
 }
