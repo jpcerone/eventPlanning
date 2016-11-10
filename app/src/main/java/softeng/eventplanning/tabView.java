@@ -15,12 +15,15 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import API.EventAPI;
+import API.UserAPI;
 
 /**
  * Created by jpcerone on 10/3/16.
@@ -58,7 +61,7 @@ public class tabView extends MainActivity {
 
         EventAPI event = new EventAPI();
         event.tabviewActivity(this);
-        event.setsomething(1);//NEED TO CHANGE!!
+        event.setsomething(33);//NEED TO CHANGE!!
         event.execute();
 
 
@@ -89,6 +92,14 @@ public class tabView extends MainActivity {
         ArrayAdapter adapter2 = new ArrayAdapter<String>(this, R.layout.event_friend_list, friends);
         ListView listView2 = (ListView) findViewById(R.id.eventFriendsList);
         listView2.setAdapter(adapter2);
+
+    }
+    public void friendClicked(View view){
+        TextView temp = (TextView) view;
+        Intent intent = new Intent(this,userPage.class);
+        intent.putExtra("Username",temp.getText().toString());
+        startActivity(intent);
+
 
     }
 }

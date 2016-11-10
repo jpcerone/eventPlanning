@@ -5,47 +5,40 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-import java.lang.reflect.Type;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-
-import softeng.eventplanning.tabView;
+import softeng.eventplanning.userPage;
 
 
 public class UserAPI extends AsyncTask<String,String,String> {
-    private  String[] marray;
-    private int id;
-    private  Map<String,Object> eventMap;
-    private tabView activity;
+    private String username;
+    private  Map<String,Object> userMap;
+    private userPage activity;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(int iid){
-        id = iid;
-    }
+    public  void setUsername(String iusername){username = iusername;}
 
-    public void tabviewActivity(tabView a){activity = a;}
-
-    public Map<String,Object> getEventData(){
-        return eventMap;
-    }
+    public void userPageActivity(userPage a){activity = a;}
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/get-event/"+id);
+        String urlstring = new String(API.serverIP+"/get-user/"+username);
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
@@ -103,8 +96,8 @@ public class UserAPI extends AsyncTask<String,String,String> {
             if(response.getInt("code") == 200){
                 Type mapType = new TypeToken<Map<String,Object>>(){}.getType();
                 Gson gson = new Gson();
-                eventMap = gson.fromJson(response.getString("event"),mapType);
-                activity.updateEvent(eventMap);
+                userMap = gson.fromJson(response.getString("user"),mapType);
+                activity.updateUserPage(userMap);
 
             }
             else{
