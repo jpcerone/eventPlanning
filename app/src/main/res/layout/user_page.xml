@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username"
+        android:id="@+id/user-username"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/user_bday"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14"
+        android:text="Birthday" />
+
+    <TextView
+        android:text="Phone:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/user-phone-label"
+        android:layout_below="@+id/textView14"
+        android:layout_alignStart="@+id/textView14"
+        android:layout_marginTop="14dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Birthday:"
+        android:id="@+id/textView14"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="14dp"
+        android:layout_below="@+id/dyuserImage"
+        android:layout_alignEnd="@+id/dyuserImage" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/user-bio"
+        android:text="Sample Bio"
+        android:layout_marginEnd="11dp"
+        android:layout_alignBottom="@+id/bioText"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bio:"
+        android:id="@+id/bioText"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/user-phone-label"
+        android:layout_alignStart="@+id/user-phone-label" />
+
+    <TextView
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:ems="10"
+        android:id="@+id/user-lname"
+        android:layout_alignBaseline="@+id/lnameText"
+        android:layout_alignBottom="@+id/lnameText"
+        android:layout_alignStart="@+id/user-fname" />
+
+    <TextView
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/user-fname"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/nameText"
+        android:layout_alignBottom="@+id/nameText"
+        android:layout_toEndOf="@+id/user-username" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="First Name:"
+        android:id="@+id/nameText"
+
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_below="@+id/user-username"
+        android:layout_toEndOf="@+id/dyuserImage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lnameText"
+        android:text="Last Name:"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignBottom="@+id/dyuserImage"
+        android:layout_alignEnd="@+id/nameText" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/dyuserImage"
+        android:src="@drawable/blank_user"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="13dp"
+        android:layout_below="@+id/user-username"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="Phone #"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/user-phone"
+        android:layout_alignBaseline="@+id/user-phone-label"
+        android:layout_alignBottom="@+id/user-phone-label"
+        android:layout_toEndOf="@+id/textView14" />
+
+
+</RelativeLayout>

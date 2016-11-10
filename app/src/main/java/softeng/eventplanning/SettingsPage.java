@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import API.AddFriendAPI;
 import API.SettingsAPI;
 
 /**
@@ -20,6 +19,17 @@ public class SettingsPage extends AppCompatActivity {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_page);
+        EditText editTextPlace;
+
+        editTextPlace = (EditText) findViewById(R.id.bday);
+        editTextPlace.setText(LoggedInUser.birthday);
+        editTextPlace = (EditText) findViewById(R.id.fname);
+        editTextPlace.setText(LoggedInUser.fName);
+        editTextPlace = (EditText) findViewById(R.id.lname);
+        editTextPlace.setText(LoggedInUser.lName);
+        editTextPlace = (EditText) findViewById(R.id.bio);
+        editTextPlace.setText(LoggedInUser.bio);
+
 
 
     }
@@ -42,15 +52,20 @@ public class SettingsPage extends AppCompatActivity {
             accountSettings[1] = placeHolder.getText().toString();
             placeHolder = (EditText) findViewById(R.id.bday);
             accountSettings[2] = placeHolder.getText().toString();
+            LoggedInUser.setBirthday(placeHolder.getText().toString());
+
 
             placeHolder = (TextView) findViewById(R.id.phone);
             accountSettings[3] = placeHolder.getText().toString();
             placeHolder = (EditText) findViewById(R.id.fname);
             accountSettings[4] = placeHolder.getText().toString();
+            LoggedInUser.setfName(placeHolder.getText().toString());
             placeHolder = (EditText) findViewById(R.id.lname);
             accountSettings[5] = placeHolder.getText().toString();
-            placeHolder = (EditText) findViewById(R.id.bio);
+            LoggedInUser.setlName(placeHolder.getText().toString());
+            placeHolder = (EditText) findViewById(R.id.user_bio);
             accountSettings[6] = placeHolder.getText().toString();
+            LoggedInUser.setBio(placeHolder.getText().toString());
             placeHolder = (EditText) findViewById(R.id.currentPass);
             accountSettings[7] = placeHolder.getText().toString();
             settingsAPI.accountArray(accountSettings);
