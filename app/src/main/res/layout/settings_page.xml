@@ -186,7 +186,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
-        android:text="1-123-456-789"
+        android:text="1-123-456-7890"
         android:id="@+id/phone"
         android:layout_alignBaseline="@+id/phoneTxt"
         android:layout_alignBottom="@+id/phoneTxt"
