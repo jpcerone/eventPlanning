@@ -41,36 +41,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"/>
 
-    <EditText
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/fname"
-        android:layout_below="@+id/Profile_Settings"
-        android:layout_toEndOf="@+id/nameText" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/lnameText"
-        android:layout_toEndOf="@+id/updateImage"
-        android:text="Last Name:"
-        android:layout_marginLeft="6dp"
-        android:layout_alignBottom="@+id/userImage"/>
-
-    <EditText
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/lname"
-        android:layout_above="@+id/updateImage"
-        android:layout_toEndOf="@+id/lnameText" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +79,8 @@
         android:id="@+id/bioText"
         android:layout_below="@+id/textView14"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp" />
+        android:layout_marginTop="21dp"
+        android:maxLines="7"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -171,12 +142,66 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit Changes"
+        android:text="Ok"
         android:id="@+id/sbmt"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/currentPass"
         android:layout_marginBottom="10dp"
         android:onClick="updateSettingsButtonClicked"/>
+
+    <TextView
+        android:text="Phone #:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/updateImage"
+        android:layout_alignStart="@+id/lnameText"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/phoneTxt"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/fname"
+        android:layout_alignBaseline="@+id/nameText"
+        android:layout_alignBottom="@+id/nameText"
+        android:layout_toEndOf="@+id/nameText" />
+
+    <EditText
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/lname"
+        android:layout_alignBaseline="@+id/lnameText"
+        android:layout_alignBottom="@+id/lnameText"
+        android:layout_toEndOf="@+id/lnameText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:text="1-123-456-7890"
+        android:id="@+id/phone"
+        android:layout_alignBaseline="@+id/phoneTxt"
+        android:layout_alignBottom="@+id/phoneTxt"
+        android:layout_alignStart="@+id/lname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lnameText"
+        android:text="Last Name:"
+        android:layout_marginLeft="6dp"
+        android:layout_below="@+id/fname"
+        android:layout_toEndOf="@+id/updateImage"
+        android:layout_marginTop="12dp" />
 
 
 </RelativeLayout>

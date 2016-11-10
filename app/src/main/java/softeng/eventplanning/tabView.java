@@ -61,7 +61,7 @@ public class tabView extends MainActivity {
 
         EventAPI event = new EventAPI();
         event.tabviewActivity(this);
-        event.setsomething(33);//NEED TO CHANGE!!
+        event.setsomething(1);//NEED TO CHANGE!!
         event.execute();
 
 

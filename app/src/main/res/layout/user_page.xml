@@ -12,6 +12,17 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/userBday"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14"
+        android:text="Birthday" />
+
+    <TextView
         android:text="Phone:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,18 +122,6 @@
         android:layout_marginStart="35dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/userBday"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Birthday"
-        android:layout_alignBaseline="@+id/textView14"
-        android:layout_alignBottom="@+id/textView14"
-        android:layout_alignStart="@+id/userUsername" />
-
-    <TextView
         android:text="Phone #"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
@@ -132,15 +131,6 @@
         android:layout_alignBottom="@+id/userPhoneLabel"
         android:layout_alignStart="@+id/userBday" />
 
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/userBio"
-        android:text="Sample Bio"
-        android:layout_alignBottom="@+id/bioText"
-        android:layout_toEndOf="@+id/textView14" />
 
     <Button
         android:text="Edit"
@@ -149,6 +139,16 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/editButton"
         android:onClick="editButtonClicked"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/userBio"
+        android:text="Sample Bio"
+        android:layout_alignBottom="@+id/bioText"
+        android:layout_alignStart="@+id/userPhone" />
 
 
 </RelativeLayout>
