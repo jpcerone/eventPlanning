@@ -43,8 +43,8 @@ public class SettingsPage extends AppCompatActivity {
             placeHolder = (EditText) findViewById(R.id.bday);
             accountSettings[2] = placeHolder.getText().toString();
 
-            //placeHolder = (TextView) findViewById(R.id.phone);
-            accountSettings[3] = LoggedInUser.phone;
+            placeHolder = (TextView) findViewById(R.id.phone);
+            accountSettings[3] = placeHolder.getText().toString();
             placeHolder = (EditText) findViewById(R.id.fname);
             accountSettings[4] = placeHolder.getText().toString();
             placeHolder = (EditText) findViewById(R.id.lname);
