@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import API.FeedAPI;
 import API.EventAPI;
 
 /**
@@ -29,6 +29,13 @@ import API.EventAPI;
 public class tabView extends MainActivity {
     String[] friends = {"Test"};
     String[] mobileArray = {"Event 1            Distance:","Event 2            Distance:","Event 3            Distance:","Event 4            Distance:","Event 5            Distance:","Event 6            Distance:","Event 7            Distance:","Event 8            Distance:"};
+    ArrayList event_titles = new ArrayList();
+    ArrayList event_pics = new ArrayList();
+    ArrayList event_descs = new ArrayList();
+    ArrayList wallItems = new ArrayList<WallItem>();
+    //public ListView listView;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabed_view);
@@ -61,6 +68,10 @@ public class tabView extends MainActivity {
         event.setsomething(1);//NEED TO CHANGE!!
         event.execute();
 
+        FeedAPI feed = new FeedAPI();
+        feed.tabviewActivity(this);
+        feed.execute();
+
 
     }
     public void searchFilter(View view)
@@ -91,4 +102,33 @@ public class tabView extends MainActivity {
         listView2.setAdapter(adapter2);
 
     }
+
+
+    public void setFeedArrays(Map<String,Object> eventInfo){
+
+        System.out.println("1 "+eventInfo);
+        event_titles.add(eventInfo.get("name"));
+        System.out.println(event_titles+" setFeedArray");
+        event_pics.add(eventInfo.get("image"));
+        System.out.println(event_pics+" setFeedArray");
+        event_descs.add(eventInfo.get("description"));
+        System.out.println(event_descs+" setFeedArray");
+
+        for (int i = 0; i < event_titles.size(); i++) {
+            WallItem item = new WallItem(event_titles.get(i), event_pics.get(i),
+                    event_descs.get(i));
+            System.out.println("Wall Item title: "+item.getEvent_title());
+            wallItems.add(item);
+        }
+
+
+        ListView listView = (ListView) findViewById(R.id.feed_listView);
+        WallAdapter wAdapter = new WallAdapter(this, wallItems);
+        //WallAdapter wAdapter = new WallAdapter(getApplicationContext(), R.layout.feed_list, wallItems);
+        listView.setAdapter(wAdapter);
+        //TODO clickng the wall item takes you to event page.
+        //listView.setOnClickListener(this);
+    }
+
+
 }
