@@ -41,26 +41,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"/>
 
-    <EditText
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/fname"
-        android:layout_below="@+id/Profile_Settings"
-        android:layout_toEndOf="@+id/nameText" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/lnameText"
-        android:layout_toEndOf="@+id/updateImage"
-        android:text="Last Name:"
-        android:layout_marginLeft="6dp"
-        android:layout_alignBottom="@+id/userImage"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -211,6 +191,17 @@
         android:layout_alignBaseline="@+id/phoneTxt"
         android:layout_alignBottom="@+id/phoneTxt"
         android:layout_alignStart="@+id/lname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lnameText"
+        android:text="Last Name:"
+        android:layout_marginLeft="6dp"
+        android:layout_below="@+id/fname"
+        android:layout_toEndOf="@+id/updateImage"
+        android:layout_marginTop="12dp" />
 
 
 </RelativeLayout>

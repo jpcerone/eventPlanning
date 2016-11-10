@@ -63,7 +63,7 @@ public class SettingsPage extends AppCompatActivity {
             placeHolder = (EditText) findViewById(R.id.lname);
             accountSettings[5] = placeHolder.getText().toString();
             LoggedInUser.setlName(placeHolder.getText().toString());
-            placeHolder = (EditText) findViewById(R.id.user_bio);
+            placeHolder = (EditText) findViewById(R.id.bio);
             accountSettings[6] = placeHolder.getText().toString();
             LoggedInUser.setBio(placeHolder.getText().toString());
             placeHolder = (EditText) findViewById(R.id.currentPass);
