@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(tabViewChange);
     }
     public void accountSettingsCLicked(MenuItem item) {
-        Intent accountSettings = new Intent(this, SettingsPage.class);
+        Intent accountSettings = new Intent(this, userPage.class);
+        accountSettings.putExtra("Username",LoggedInUser.username);
         startActivity(accountSettings);
     }
     public void createAccount(View v){

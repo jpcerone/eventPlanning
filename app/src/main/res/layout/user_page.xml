@@ -44,17 +44,6 @@
         android:layout_alignEnd="@+id/dyuserImage" />
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/userBio"
-        android:text="Sample Bio"
-        android:layout_marginEnd="11dp"
-        android:layout_alignBottom="@+id/bioText"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -75,18 +64,6 @@
         android:layout_alignBaseline="@+id/lnameText"
         android:layout_alignBottom="@+id/lnameText"
         android:layout_alignStart="@+id/userFname" />
-
-    <TextView
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/userFname"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignBaseline="@+id/nameText"
-        android:layout_alignBottom="@+id/nameText"
-        android:layout_toEndOf="@+id/userUsername" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -123,6 +100,27 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/userBio"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:id="@+id/userFriendList" />
+
+    <TextView
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/userFname"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/nameText"
+        android:layout_alignBottom="@+id/nameText"
+        android:layout_toEndOf="@+id/userUsername"
+        android:layout_marginStart="35dp" />
+
     <TextView
         android:text="Phone #"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -131,7 +129,26 @@
         android:id="@+id/userPhone"
         android:layout_alignBaseline="@+id/userPhoneLabel"
         android:layout_alignBottom="@+id/userPhoneLabel"
-        android:layout_toEndOf="@+id/textView14" />
+        android:layout_alignStart="@+id/userBday" />
+
+
+    <Button
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/editButton"
+        android:onClick="editButtonClicked"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/userBio"
+        android:text="Sample Bio"
+        android:layout_alignBottom="@+id/bioText"
+        android:layout_alignStart="@+id/userPhone" />
 
 
 </RelativeLayout>

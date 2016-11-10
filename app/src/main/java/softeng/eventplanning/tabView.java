@@ -15,12 +15,15 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import API.FeedAPI;
 import API.EventAPI;
+import API.UserAPI;
 
 /**
  * Created by jpcerone on 10/3/16.
@@ -102,6 +105,14 @@ public class tabView extends MainActivity {
         listView2.setAdapter(adapter2);
 
     }
+    public void friendClicked(View view){
+        TextView temp = (TextView) view;
+        Intent intent = new Intent(this,userPage.class);
+        intent.putExtra("Username",temp.getText().toString());
+        startActivity(intent);
+
+
+    }
 
 
     public void setFeedArrays(Map<String,Object> eventInfo){
@@ -129,6 +140,4 @@ public class tabView extends MainActivity {
         //TODO clickng the wall item takes you to event page.
         //listView.setOnClickListener(this);
     }
-
-
 }
