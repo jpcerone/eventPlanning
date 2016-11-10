@@ -54,16 +54,16 @@ public class SettingsPage extends AppCompatActivity {
             accountSettings[2] = placeHolder.getText().toString();
             LoggedInUser.setBirthday(placeHolder.getText().toString());
 
-            //placeHolder = (TextView) findViewById(R.id.phone);
-            accountSettings[3] = LoggedInUser.phone;
-            //LoggedInUser.setPhone(placeHolder.getText().toString());
+
+            placeHolder = (TextView) findViewById(R.id.phone);
+            accountSettings[3] = placeHolder.getText().toString();
             placeHolder = (EditText) findViewById(R.id.fname);
             accountSettings[4] = placeHolder.getText().toString();
             LoggedInUser.setfName(placeHolder.getText().toString());
             placeHolder = (EditText) findViewById(R.id.lname);
             accountSettings[5] = placeHolder.getText().toString();
             LoggedInUser.setlName(placeHolder.getText().toString());
-            placeHolder = (EditText) findViewById(R.id.user_bio);
+            placeHolder = (EditText) findViewById(R.id.bio);
             accountSettings[6] = placeHolder.getText().toString();
             LoggedInUser.setBio(placeHolder.getText().toString());
             placeHolder = (EditText) findViewById(R.id.currentPass);

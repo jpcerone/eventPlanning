@@ -25,17 +25,17 @@ public class userPage extends AppCompatActivity {
     public void updateUserPage(String[] info){
         TextView editTextPlace;
 
-        editTextPlace = (TextView) findViewById(R.id.user_bday);
+        editTextPlace = (TextView) findViewById(R.id.userBday);
         editTextPlace.setText(info[0]);
-        editTextPlace = (TextView) findViewById(R.id.user_fname);
+        editTextPlace = (TextView) findViewById(R.id.userFname);
         editTextPlace.setText(info[1]);
-        editTextPlace = (TextView) findViewById(R.id.user_lname);
+        editTextPlace = (TextView) findViewById(R.id.userLname);
         editTextPlace.setText(info[2]);
-        editTextPlace = (TextView) findViewById(R.id.user_bio);
+        editTextPlace = (TextView) findViewById(R.id.userBio);
         editTextPlace.setText(info[3]);
-        editTextPlace = (TextView) findViewById(R.id.user_phone);
+        editTextPlace = (TextView) findViewById(R.id.userPhone);
         editTextPlace.setText(info[4]);
-        editTextPlace = (TextView) findViewById(R.id.user_username);
+        editTextPlace = (TextView) findViewById(R.id.userUsername);
         editTextPlace.setText(info[5]);
     }
 
