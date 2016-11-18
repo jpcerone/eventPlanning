@@ -9,17 +9,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import API.CreateEventAPI;
-import API.CreateUserAPI;
 
 /**
  * Created by jpcerone on 10/3/16.
@@ -39,7 +36,7 @@ private String malerts;
         final String[] create_event = new String[9];
 
         ImageButton send = (ImageButton) findViewById(R.id.done);
-        Switch priv_event = (Switch) findViewById(R.id.switch1);
+        Switch priv_event = (Switch) findViewById(R.id.publicPrivSwitch);
         Switch alerts = (Switch) findViewById(R.id.switch2);
         alerts.setChecked(false);
         priv_event.setChecked(false);
