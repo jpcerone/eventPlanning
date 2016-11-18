@@ -19,7 +19,7 @@
     <SeekBar
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
+        android:id="@+id/mileBar"
         android:layout_below="@+id/radiusText"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
@@ -30,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="1 Mi"
         android:id="@+id/textView"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/mileBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -41,7 +41,7 @@
         android:text="5 Mi"
         android:id="@+id/textView2"
         android:layout_gravity="center"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/mileBar"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -50,7 +50,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="10 Mi"
         android:id="@+id/textView3"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/mileBar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Public:     "
-        android:id="@+id/switch1"
+        android:id="@+id/publicPrivSwitch"
         android:checked="false"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
@@ -72,7 +72,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="From now To:"
         android:id="@+id/textView4"
-        android:layout_below="@+id/switch1"
+        android:layout_below="@+id/publicPrivSwitch"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="31dp"
@@ -81,7 +81,7 @@
     <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/calendarView"
+        android:id="@+id/fromNowToCal"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" />

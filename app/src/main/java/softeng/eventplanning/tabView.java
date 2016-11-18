@@ -1,6 +1,7 @@
 package softeng.eventplanning;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,20 +10,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import API.FeedAPI;
 import API.EventAPI;
+import API.SearchAPI;
 import API.UserAPI;
 
 /**
@@ -36,10 +44,30 @@ public class tabView extends MainActivity {
     ArrayList event_pics = new ArrayList();
     ArrayList event_descs = new ArrayList();
     ArrayList wallItems = new ArrayList<WallItem>();
-    //public ListView listView;
+    String date;
+    Map<String,Integer> eventMap;
+    int publicpriv;
+    double radius;
+
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        eventMap = new HashMap<String, Integer>();
+        Bundle extras = getIntent().getExtras();
+        if(extras == null){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            date = sdf.format(new Date(Calendar.DATE));
+            radius = 2;
+            publicpriv = 0;
+        }
+        else{
+            System.out.println("This is what I got"+extras.getString("date"));
+            date = extras.getString("date");
+            publicpriv = extras.getInt("publicpriv");
+            radius = extras.getDouble("radius");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabed_view);
         getSupportActionBar().show();
@@ -112,6 +140,49 @@ public class tabView extends MainActivity {
         startActivity(intent);
 
 
+    }
+    public void searchClicked(View v){
+        System.out.println("got here");
+        SearchAPI sa = new SearchAPI();
+        sa.setDist(radius);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String curdate = sdf.format(new Date(Calendar.DATE));
+        sa.setTimeFrom(curdate);
+        sa.setTimeTo(date);
+        sa.setPublicpriv(publicpriv);
+        EditText search = (EditText)findViewById(R.id.searchField);
+        sa.setTitle(search.getText().toString());
+        sa.currentActivity(this);
+        sa.execute();
+    }
+
+    public void searchEventClicked(View v){
+        TextView temp = (TextView) v;
+
+        Intent intent = new Intent(this,SamplePage.class);
+        intent.putExtra("id",eventMap.get(temp.getText().toString()));
+        startActivity(intent);
+
+
+
+    }
+    public void updateSearch(JSONArray data) {
+        String[] searchResults = new String[data.length()];
+
+        for(int i = 0;i<data.length();i++){
+            try {
+                JSONObject temp = (JSONObject)data.get(i);
+                searchResults[i] = temp.getString("name");
+                eventMap.put(temp.getString("name"),temp.getInt("id"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.searchresultslist, searchResults);
+        ListView listView = (ListView) findViewById(R.id.searchresults);
+        listView.setAdapter(adapter);
     }
 
 
