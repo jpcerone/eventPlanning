@@ -3,7 +3,10 @@ package API;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import softeng.eventplanning.tabView;
 
 public class SettingsAPI extends AsyncTask<String,String,String> {
     private  String[] accountSettings;
+    private String userImage;
     private Activity activity;
     @Override
     protected void onPreExecute() {
@@ -34,6 +38,8 @@ public class SettingsAPI extends AsyncTask<String,String,String> {
     public void signupActivity(Activity a){activity = a;}
 
     public void accountArray(String[] s){accountSettings = s;}
+
+    public void setImage(String s){userImage=s;}
 
     @Override
     protected String doInBackground(String ... params) {
@@ -52,6 +58,7 @@ public class SettingsAPI extends AsyncTask<String,String,String> {
             jsonobj.put("lName",accountSettings[5]);
             jsonobj.put("bio",accountSettings[6]);
             jsonobj.put("pass",accountSettings[7]);
+            jsonobj.put("userPic",userImage);
 
             String urlparam;
             urlparam = jsonobj.toString();
@@ -100,6 +107,16 @@ public class SettingsAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
 
             if(response.getInt("code") == 200){
+                LoggedInUser.setUsername(accountSettings[0]);
+                LoggedInUser.setBirthday(accountSettings[2]);
+                LoggedInUser.setPhone(accountSettings[3]);
+                LoggedInUser.setfName(accountSettings[4]);
+                LoggedInUser.setlName(accountSettings[5]);
+                LoggedInUser.setBio(accountSettings[6]);
+                byte[] imgByte = Base64.decode(userImage,Base64.DEFAULT);
+                Bitmap img = BitmapFactory.decodeByteArray(imgByte,0,imgByte.length);
+                LoggedInUser.setEncoded(userImage);
+                LoggedInUser.setImage(img);
                 activity.startActivity(new Intent(activity,tabView.class));
 
             }

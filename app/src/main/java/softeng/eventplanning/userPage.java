@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,10 @@ public class userPage extends AppCompatActivity {
         editTextPlace.setText((String)info.get("phone"));
         editTextPlace = (TextView) findViewById(R.id.userUsername);
         editTextPlace.setText((String)info.get("username"));
+        if(!LoggedInUser.encoded.equals("")) {
+            ImageView image = (ImageView) findViewById(R.id.dyuserImage);
+            image.setImageBitmap(LoggedInUser.image);
+        }
         String list = (String) info.get("friendsList");
         friends = list.split("\\s+");
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.user_friend_list, friends);
