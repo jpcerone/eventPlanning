@@ -195,6 +195,7 @@ public class tabView extends MainActivity {
         System.out.println(event_pics+" setFeedArray");
         event_descs.add(eventInfo.get("description"));
         System.out.println(event_descs+" setFeedArray");
+        wallItems.clear();
 
         for (int i = 0; i < event_titles.size(); i++) {
             WallItem item = new WallItem(event_titles.get(i), event_pics.get(i),
@@ -202,7 +203,6 @@ public class tabView extends MainActivity {
             System.out.println("Wall Item title: "+item.getEvent_title());
             wallItems.add(item);
         }
-
 
         ListView listView = (ListView) findViewById(R.id.feed_listView);
         WallAdapter wAdapter = new WallAdapter(this, wallItems);
