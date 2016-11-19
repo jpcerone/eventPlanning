@@ -55,8 +55,10 @@ public class SettingsPage extends AppCompatActivity {
         editTextPlace.setText(LoggedInUser.lName);
         editTextPlace = (EditText) findViewById(R.id.bio);
         editTextPlace.setText(LoggedInUser.bio);
-        ImageView image = (ImageView) findViewById(R.id.userImage);
-        image.setImageBitmap(LoggedInUser.image);
+        if(!LoggedInUser.encoded.equals("")){
+            ImageView image = (ImageView) findViewById(R.id.userImage);
+            image.setImageBitmap(LoggedInUser.image);
+        }
         SettingsAPI settingsAPI = new SettingsAPI();
         settings = settingsAPI;
 

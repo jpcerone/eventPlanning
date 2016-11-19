@@ -51,8 +51,10 @@ public class userPage extends AppCompatActivity {
         editTextPlace.setText((String)info.get("phone"));
         editTextPlace = (TextView) findViewById(R.id.userUsername);
         editTextPlace.setText((String)info.get("username"));
-        ImageView image = (ImageView) findViewById(R.id.dyuserImage);
-        image.setImageBitmap(LoggedInUser.image);
+        if(!LoggedInUser.encoded.equals("")) {
+            ImageView image = (ImageView) findViewById(R.id.dyuserImage);
+            image.setImageBitmap(LoggedInUser.image);
+        }
         String list = (String) info.get("friendsList");
         friends = list.split("\\s+");
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.user_friend_list, friends);
