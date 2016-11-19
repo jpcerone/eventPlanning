@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@drawable/bottom_border"
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Test Name"
+        android:text="Error loading text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/feedTitle"
+        android:textAlignment="center"
+        android:onClick = "feedEventClicked"
         android:textSize="36sp" />
 
     <TextView
         android:id="@+id/feedImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="txt"
+        android:text="Error loading text"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -35,8 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".5"
-        android:text="@string/comment1"
+        android:textAlignment="center"
+        android:text="Error loading text"
         android:textSize="20sp" />
 </LinearLayout>
-
-
