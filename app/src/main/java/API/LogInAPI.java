@@ -3,7 +3,10 @@ package API;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -106,6 +109,11 @@ public class LogInAPI extends AsyncTask<String,String,String> {
                  LoggedInUser.setUserid(response.getString("id"));
                  LoggedInUser.setPhone(response.getString("phone"));
                  LoggedInUser.setFriendsListRaw(response.getString("friendsList"));
+                 LoggedInUser.setEncoded(response.getString("userPic"));
+                 byte[] imgByte = Base64.decode(LoggedInUser.encoded,Base64.DEFAULT);
+                 Bitmap img = BitmapFactory.decodeByteArray(imgByte,0,imgByte.length);
+                 LoggedInUser.setImage(img);
+//                 Log.d("PRINT",LoggedInUser.image.toString());
                  activity.startActivity(new Intent(activity,tabView.class));
 
              }

@@ -1,5 +1,7 @@
 package softeng.eventplanning;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,6 +20,8 @@ public class LoggedInUser {
     public static String friendListRaw;
     public static String bio;
     public static String userid;
+    public static Bitmap image;
+    public static String encoded;
     public static void setUsername(String s){
         username = s;
     }
@@ -42,6 +46,8 @@ public class LoggedInUser {
         bio = s;
     }
     public static void setUserid(String s){userid = s;}
+    public static void setImage(Bitmap b){image = b;}
+    public static void setEncoded(String s){encoded =s;}
     public static void addFriend(String s) {
         friendsList.add(s);
         if (friendListRaw.equals("")) {

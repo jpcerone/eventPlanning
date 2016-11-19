@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
 import API.SettingsAPI;
 
@@ -29,11 +33,12 @@ import API.SettingsAPI;
 public class SettingsPage extends AppCompatActivity {
     private static int RESULT_LOAD_IMG=0;
     private static int REQUEST_READ;
-    private byte[] imgByte = null;
+    String _encoded;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    private SettingsAPI settings;
     private String img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,10 @@ public class SettingsPage extends AppCompatActivity {
         editTextPlace.setText(LoggedInUser.lName);
         editTextPlace = (EditText) findViewById(R.id.bio);
         editTextPlace.setText(LoggedInUser.bio);
+        ImageView image = (ImageView) findViewById(R.id.userImage);
+        image.setImageBitmap(LoggedInUser.image);
+        SettingsAPI settingsAPI = new SettingsAPI();
+        settings = settingsAPI;
 
 
 
@@ -59,10 +68,7 @@ public class SettingsPage extends AppCompatActivity {
         String pass = passCheck.getText().toString();
         passCheck = (EditText) findViewById(R.id.passCheck2);
         if(pass.equals(passCheck.getText().toString())) {
-
-
-            SettingsAPI settingsAPI = new SettingsAPI();
-            settingsAPI.signupActivity(this);
+            settings.signupActivity(this);
             String[] accountSettings = new String[8];
 
             TextView placeHolder;
@@ -89,8 +95,8 @@ public class SettingsPage extends AppCompatActivity {
             LoggedInUser.setBio(placeHolder.getText().toString());
             placeHolder = (EditText) findViewById(R.id.currentPass);
             accountSettings[7] = placeHolder.getText().toString();
-            settingsAPI.accountArray(accountSettings);
-            settingsAPI.execute();
+            settings.accountArray(accountSettings);
+            settings.execute();
         }
         else{
             int duration = Toast.LENGTH_SHORT;
@@ -134,15 +140,21 @@ public class SettingsPage extends AppCompatActivity {
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String imgString;
                 imgString = cursor.getString(columnIndex);
+                File f = new File(imgString);
+                FileInputStream fs = new FileInputStream(f);
+                byte[] bytes = new byte[(int)f.length()];
+                fs.read(bytes);
+                String encodedFile = new String(Base64.encode(bytes,Base64.DEFAULT),"UTF-8");
+                _encoded = encodedFile;
                 Bitmap imgMap = BitmapFactory.decodeFile(imgString);
                 cursor.close();
 
                 //Convert Image to Blob
                 ByteArrayOutputStream ba = new ByteArrayOutputStream();
-                imgMap.compress(Bitmap.CompressFormat.JPEG,Bitmap.DENSITY_NONE,ba);
-                byte[] bArray = ba.toByteArray();
-                imgByte = bArray;
-                //Log.d("IMG",bArray.toString());
+//                imgMap.compress(Bitmap.CompressFormat.JPEG,100,ba);
+//                byte[] bArray = ba.toByteArray();
+                settings.setImage(_encoded);
+                Log.d("IMG",_encoded);
 
                 ImageView imgView = (ImageView) findViewById(R.id.userImage);
                 // Set the Image in ImageView after decoding the String
@@ -154,7 +166,9 @@ public class SettingsPage extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(this, "Could not get image", Toast.LENGTH_LONG).show();
+            Log.d("Fail",e.toString());
         }
 
     }
+
 }
