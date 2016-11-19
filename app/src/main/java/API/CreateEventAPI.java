@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import softeng.eventplanning.LoggedInUser;
 import softeng.eventplanning.MainActivity;
 import softeng.eventplanning.tabView;
 
@@ -40,7 +41,7 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String("http://10.0.2.2:5000/create-event");
+        String urlstring = new String(API.serverIP+"/create-event/");
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
@@ -56,6 +57,10 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
             jsonobj.put("image",marray[6]);
             jsonobj.put("owner",marray[7]);
             jsonobj.put("arrivalNot",marray[8]);
+            jsonobj.put("id", marray[9]);
+            jsonobj.put("LAT", marray[10]);
+            jsonobj.put("LONG", marray[11]);
+            jsonobj.put("public", marray[12]);
             String urlparam;
             urlparam = jsonobj.toString();
 

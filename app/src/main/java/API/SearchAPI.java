@@ -23,27 +23,40 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 
-import softeng.eventplanning.SamplePage;
 import softeng.eventplanning.tabView;
 
 
-public class EventAPI extends AsyncTask<String,String,String> {
-    private  String[] marray;
-    private int id;
+public class SearchAPI extends AsyncTask<String,String,String> {
+    private String[] marray;
+    private String title;
+    private double dist;
+    private String timeTo;
+    private String timeFrom;
+    private int publicpriv;
     private  Map<String,Object> eventMap;
     private tabView activity;
-    private SamplePage sactivity;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(int iid){
-        id = iid;
+    public  void setTitle(String s){
+        title = s;
+    }
+    public  void setDist(double s){
+        dist = s;
+    }
+    public  void setTimeTo(String s){
+        timeTo = s;
+    }
+    public  void setTimeFrom(String s){
+        timeFrom = s;
+    }
+    public  void setPublicpriv(int s){
+        publicpriv = s;
     }
 
-    public void tabviewActivity(tabView a){activity = a;}
-    public void eventActivity(SamplePage a){sactivity = a;}
+    public void currentActivity(tabView a){activity = a;}
 
     public Map<String,Object> getEventData(){
         return eventMap;
@@ -51,12 +64,20 @@ public class EventAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/get-event/"+id);
+        String urlstring = new String(API.serverIP+"/search");
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
 
         try{
+            jsonobj.put("dist",dist/10);
+            jsonobj.put("time_to",timeTo);
+            jsonobj.put("time_frm",timeFrom);
+            jsonobj.put("public",publicpriv);
+            jsonobj.put("title",title);
+            jsonobj.put("lat",70.1);
+            jsonobj.put("long",60.0);
+
 
 
 
@@ -109,14 +130,9 @@ public class EventAPI extends AsyncTask<String,String,String> {
             if(response.getInt("code") == 200){
                 Type mapType = new TypeToken<Map<String,Object>>(){}.getType();
                 Gson gson = new Gson();
-                eventMap = gson.fromJson(response.getString("event"),mapType);
-                if(activity == null){
-                    sactivity.updateEvent(eventMap);
-                }
-                else{
-                    activity.updateEvent(eventMap);
-                }
-
+                JSONArray data = response.getJSONArray("data");
+                //eventMap = gson.fromJson(response.getString("data"),mapType);
+                activity.updateSearch(data);
 
             }
             else{
@@ -134,3 +150,4 @@ public class EventAPI extends AsyncTask<String,String,String> {
     }
 
 }
+
