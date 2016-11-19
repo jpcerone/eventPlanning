@@ -102,7 +102,7 @@ public class createEvent extends AppCompatActivity  {
         private String pub;
         private static int RESULT_LOAD_IMG=0;
         private static int REQUEST_READ;
-        private byte[] imgByte = null;
+        private byte[] bytes = null;
         String _encoded;
         private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -212,6 +212,7 @@ public class createEvent extends AppCompatActivity  {
                         create_event[5] = listOfParts;
                         create_event[6] = _encoded;
                         create_event[7] = user;
+                        create_event[8] = "yes";
                         create_event[10] = "42.0";
                         create_event[11] = "15.63";
                         create_event[12] = pub;

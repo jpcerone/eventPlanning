@@ -42,7 +42,7 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/create-event/");
+        String urlstring = new String(API.serverIP+"/create-event");
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
