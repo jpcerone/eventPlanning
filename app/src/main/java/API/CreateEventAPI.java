@@ -39,6 +39,7 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
 
     public void signupActivity(Activity a){activity = a;}
 
+
     @Override
     protected String doInBackground(String ... params) {
         String urlstring = new String(API.serverIP+"/create-event/");
@@ -57,10 +58,10 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
             jsonobj.put("image",marray[6]);
             jsonobj.put("owner",marray[7]);
             jsonobj.put("arrivalNot",marray[8]);
-            jsonobj.put("id", marray[9]);
-            jsonobj.put("LAT", marray[10]);
-            jsonobj.put("LONG", marray[11]);
-            jsonobj.put("public", marray[12]);
+
+            jsonobj.put("LAT", 34.7);
+            jsonobj.put("LONG", 54.9);
+            jsonobj.put("public", 0);
             String urlparam;
             urlparam = jsonobj.toString();
 
