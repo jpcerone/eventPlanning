@@ -12,6 +12,7 @@ import android.icu.text.SimpleDateFormat;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -21,11 +22,17 @@ import android.util.Log;
 import android.view.View;
 
 
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -51,6 +58,7 @@ public class createEvent extends AppCompatActivity  {
         private String Edesc;
         private String locS;
         private String event_name;
+        private String listOfParts = "";
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +76,21 @@ public class createEvent extends AppCompatActivity  {
             Edesc = description.getText().toString();
             event_name = eventTitle.getText().toString();
             locS = location.getText().toString();
+
+            /**
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.event_add_friend_list_element,LoggedInUser.friendsList);
+            ListView listView = (ListView) findViewById(R.id.addFriendsListView);
+            listView.setAdapter(adapter);
+            listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+            listView.setItemsCanFocus(false);
+            */
+            for(int i=0;i<LoggedInUser.friendsList.size();i++){
+                CheckBox rbtn = new CheckBox(this);
+                rbtn.setId(i);
+                rbtn.setText(LoggedInUser.friendsList.get(i));
+                ((ViewGroup)findViewById(R.id.checkBoxGroup)).addView(rbtn);
+
+            }
 
             final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -126,13 +149,17 @@ public class createEvent extends AppCompatActivity  {
                     updateDate(date_v);
                     Log.d("date", date1);
                     Log.d("time", time);
+                    LinearLayout layout = (LinearLayout)findViewById(R.id.checkBoxGroup);
+                    formIsValid(layout);
+
+
 
                     create_event[0] = date1;
                     create_event[1] = time;
                     create_event[2] = locS;
                     create_event[3] = event_name;
                     create_event[4] = Edesc;
-                    create_event[5] = "friends";
+                    create_event[5] = listOfParts;
                     create_event[6] = "image";
                     create_event[7] = "owner";
                     create_event[8] = "arrival not";
@@ -171,6 +198,18 @@ public class createEvent extends AppCompatActivity  {
         CreateEventAPI api = new CreateEventAPI();
         api.signupActivity(this);
         return api;
+    }
+    public void formIsValid(LinearLayout layout) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            CheckBox v = (CheckBox) layout.getChildAt(i);
+            if(listOfParts.equals("")){
+                listOfParts = listOfParts + v.getText().toString();
+            }
+            else{
+                listOfParts = listOfParts + " " + v.getText().toString();
+            }
+
+        }
     }
 
 }
