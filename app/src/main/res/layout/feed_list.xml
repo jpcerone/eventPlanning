@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/feedTitle"
         android:textAlignment="center"
+        android:onClick = "feedEventClicked"
         android:textSize="36sp" />
 
     <TextView

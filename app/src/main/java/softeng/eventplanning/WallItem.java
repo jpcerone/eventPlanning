@@ -8,11 +8,13 @@ public class WallItem {
     private String event_title;
     private String event_pic_id;
     private String event_desc;
+    private String event_id;
 
-    public WallItem(Object event_title, Object event_pic_id, Object event_desc){
+    public WallItem(Object event_title, Object event_pic_id, Object event_desc, Object event_id){
         this.event_title = event_title.toString();
         this.event_pic_id = event_pic_id.toString();
         this.event_desc = event_desc.toString();
+        this.event_id = event_id.toString();
     }
 
     public String getEvent_title(){
@@ -29,6 +31,11 @@ public class WallItem {
         return event_desc;
     }
 
+    public String getEvent_id(){
+
+        return event_id;
+    }
+
     public void setEvent_title(String event_title){
         this.event_title = event_title;
     }
@@ -38,6 +45,10 @@ public class WallItem {
     }
 
     public void setEvent_desc(String event_desc){
+        this.event_desc = event_desc;
+    }
+
+    public void setEvent_id(String event_desc){
         this.event_desc = event_desc;
     }
 }
