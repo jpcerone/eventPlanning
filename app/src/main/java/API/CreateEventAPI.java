@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 
 import softeng.eventplanning.LoggedInUser;
 import softeng.eventplanning.MainActivity;
@@ -28,6 +29,8 @@ import softeng.eventplanning.tabView;
 public class CreateEventAPI extends AsyncTask<String,String,String> {
     private  String[] marray;
     private Activity activity;
+    private int pubint;
+    private double[] latlong;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -39,14 +42,18 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
 
     public void signupActivity(Activity a){activity = a;}
 
+    public void setpub(int i) {pubint = i;}
+
+    public void getlat(double[] ret) {latlong = ret;}
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/create-event/");
+        String urlstring = new String(API.serverIP+"/create-event");
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
 
         try{
+            Log.d("myTag", Arrays.toString(latlong));
 
             jsonobj.put("date",marray[0]);
             jsonobj.put("time",marray[1]);
@@ -57,10 +64,10 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
             jsonobj.put("image",marray[6]);
             jsonobj.put("owner",marray[7]);
             jsonobj.put("arrivalNot",marray[8]);
-            jsonobj.put("id", marray[9]);
-            jsonobj.put("LAT", marray[10]);
-            jsonobj.put("LONG", marray[11]);
-            jsonobj.put("public", marray[12]);
+
+            jsonobj.put("LAT", latlong[0]);
+            jsonobj.put("LONG", latlong[1]);
+            jsonobj.put("public", pubint);
             String urlparam;
             urlparam = jsonobj.toString();
 
