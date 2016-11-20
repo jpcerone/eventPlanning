@@ -57,11 +57,13 @@ public class tabView extends MainActivity {
     int publicpriv;
     double radius;
     private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 11;
+    int tabWanted;
 
 
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        tabWanted = 0;
         eventMap = new HashMap<String, Integer>();
         Bundle extras = getIntent().getExtras();
         if(extras == null){
@@ -73,7 +75,21 @@ public class tabView extends MainActivity {
         }
         else{
             System.out.println("This is what I got"+extras.getString("date"));
-            date = extras.getString("date");
+            tabWanted = extras.getInt("tab");
+            if(extras.getString("date") == null){
+                Calendar c = Calendar.getInstance();
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int year = c.get(Calendar.YEAR);
+                month = month + 1;
+                date = day + "/" + month + "/" + year;
+                System.out.println("Date:"+date);
+            }
+            else{
+                date = extras.getString("date");
+                System.out.println("Date:"+date);
+            }
+
             publicpriv = extras.getInt("publicpriv");
             radius = extras.getDouble("radius");
         }
@@ -111,6 +127,7 @@ public class tabView extends MainActivity {
         FeedAPI feed = new FeedAPI();
         feed.tabviewActivity(this);
         feed.execute();
+        tab.setCurrentTab(tabWanted);
 
 
     }
@@ -154,9 +171,13 @@ public class tabView extends MainActivity {
         System.out.println("got here");
         SearchAPI sa = new SearchAPI();
         sa.setDist(radius);
+        String curdate;
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String curdate = sdf.format(new Date(Calendar.DATE));
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int year = c.get(Calendar.YEAR);
+        month = month + 1;
+        curdate = day + "/" + month + "/" + year;
         sa.setTimeFrom(curdate);
         sa.setTimeTo(date);
         sa.setPublicpriv(publicpriv);
