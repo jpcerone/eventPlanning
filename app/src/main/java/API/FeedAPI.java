@@ -1,78 +1,50 @@
 package API;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import softeng.eventplanning.LoggedInUser;
-import softeng.eventplanning.MainActivity;
 import softeng.eventplanning.tabView;
 
 /**
- * Created by brandonboyle on 10/27/16.
+ * Created by David on 10/27/2016.
  */
 
-public class CreateEventAPI extends AsyncTask<String,String,String> {
-    private  String[] marray;
-    private Activity activity;
-    private int pubint;
-    private double[] latlong;
+public class FeedAPI extends AsyncTask<String,String,String> {
+    ArrayList event_titles = new ArrayList();
+    ArrayList event_pics = new ArrayList();
+    ArrayList event_descs = new ArrayList();
+    private Map<String, Object> feedMap;
+    private tabView activity;
+
+    public void tabviewActivity(tabView a){activity = a;}
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(String[] array){
-        marray = array;
-    }
-
-    public void signupActivity(Activity a){activity = a;}
-
-    public void setpub(int i) {pubint = i;}
-
-    public void getlat(double[] ret) {latlong = ret;}
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/create-event");
+        String urlstring = new String(API.serverIP+"/get-event/0");
         DataOutputStream printout;
-        JSONObject jsonobj = new JSONObject();
-
 
         try{
-            Log.d("myTag", Arrays.toString(latlong));
-
-            jsonobj.put("date",marray[0]);
-            jsonobj.put("time",marray[1]);
-            jsonobj.put("location",marray[2]);
-            jsonobj.put("name",marray[3]);
-            jsonobj.put("description",marray[4]);
-            jsonobj.put("listofPart",marray[5]);
-            jsonobj.put("image",marray[6]);
-            jsonobj.put("owner",marray[7]);
-            jsonobj.put("arrivalNot",marray[8]);
-
-            jsonobj.put("LAT", latlong[0]);
-            jsonobj.put("LONG", latlong[1]);
-            jsonobj.put("public", pubint);
-            String urlparam;
-            urlparam = jsonobj.toString();
-
-            System.out.println(urlparam);
-
             URL url = new URL(urlstring);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -80,17 +52,11 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
             connection.setRequestProperty("Accept-Language","en-US,en;q=0.5");
             connection.setDoInput(true);
 
-            printout = new DataOutputStream(connection.getOutputStream());
-
-            printout.writeBytes(urlparam);
-            printout.flush ();
-            printout.close ();
-
             InputStream in = new BufferedInputStream(connection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
             StringBuilder out = new StringBuilder();
-            String line = new String();
+            String line;
 
             while((line = reader.readLine()) != null){
                 out.append(line);
@@ -98,39 +64,41 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
 
             reader.close();
             return out.toString();
-
-
         }
         catch (Exception e){
             Log.d("fail", e.toString());        }
-
 
         return null;
     }
 
     @Override
     protected void onPostExecute(String result) {
-        System.out.println(result);
+        //System.out.println("what's this"+result);
         try{
             JSONObject response = new JSONObject(result);
-
             if(response.getInt("code") == 200){
-                activity.startActivity(new Intent(activity,tabView.class));
+                Log.d("SUP","true");
+                Log.d("myTag", response.toString());
 
+                Type mapType = new TypeToken<HashMap<String, Object>>(){}.getType();
+                Gson gson = new Gson();
+                //System.out.println(response.length());
+                for(int count = 0; count < response.length()-2; count++) {
+                    feedMap = gson.fromJson(response.getString("event" + Integer.toString(count)), mapType);
+                    //System.out.println("API " + feedMap);
+                    activity.setFeedArrays(feedMap);
+                }
             }
             else{
                 int duration = Toast.LENGTH_SHORT;
-                Log.d("SUP","false");
                 Context context = activity.getApplication();
                 Toast.makeText(context,response.getString("message"),duration).show();
 
+                Log.d("SUP","false");
             }
-
         }
         catch(Exception e){
-            Log.d("fail","Failed to get JSON Object");
+            Log.d("fail here", e.toString());
         }
     }
-
 }
-

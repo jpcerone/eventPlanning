@@ -3,12 +3,17 @@ package API;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,58 +21,72 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.Map;
 
-import softeng.eventplanning.LoggedInUser;
-import softeng.eventplanning.MainActivity;
+import java.lang.reflect.Type;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+
 import softeng.eventplanning.tabView;
 
-/**
- * Created by brandonboyle on 10/27/16.
- */
 
-public class CreateEventAPI extends AsyncTask<String,String,String> {
-    private  String[] marray;
-    private Activity activity;
-    private int pubint;
-    private double[] latlong;
+public class SearchAPI extends AsyncTask<String,String,String> {
+    private String[] marray;
+    private String title;
+    private double dist;
+    private String timeTo;
+    private String timeFrom;
+    private int publicpriv;
+    private  Map<String,Object> eventMap;
+    private tabView activity;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(String[] array){
-        marray = array;
+    public  void setTitle(String s){
+        title = s;
+    }
+    public  void setDist(double s){
+        dist = s;
+    }
+    public  void setTimeTo(String s){
+        timeTo = s;
+    }
+    public  void setTimeFrom(String s){
+        timeFrom = s;
+    }
+    public  void setPublicpriv(int s){
+        publicpriv = s;
     }
 
-    public void signupActivity(Activity a){activity = a;}
+    public void currentActivity(tabView a){activity = a;}
 
-    public void setpub(int i) {pubint = i;}
+    public Map<String,Object> getEventData(){
+        return eventMap;
+    }
 
-    public void getlat(double[] ret) {latlong = ret;}
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/create-event");
+        String urlstring = new String(API.serverIP+"/search");
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
 
         try{
-            Log.d("myTag", Arrays.toString(latlong));
+            double[] loc = activity.getLatLong();
+            jsonobj.put("dist",dist/10);
+            jsonobj.put("time_to",timeTo);
+            jsonobj.put("time_frm",timeFrom);
+            jsonobj.put("public",publicpriv);
+            jsonobj.put("title",title);
+            jsonobj.put("lat",loc[0]);
+            jsonobj.put("long",loc[1]);
 
-            jsonobj.put("date",marray[0]);
-            jsonobj.put("time",marray[1]);
-            jsonobj.put("location",marray[2]);
-            jsonobj.put("name",marray[3]);
-            jsonobj.put("description",marray[4]);
-            jsonobj.put("listofPart",marray[5]);
-            jsonobj.put("image",marray[6]);
-            jsonobj.put("owner",marray[7]);
-            jsonobj.put("arrivalNot",marray[8]);
 
-            jsonobj.put("LAT", latlong[0]);
-            jsonobj.put("LONG", latlong[1]);
-            jsonobj.put("public", pubint);
+
+
             String urlparam;
             urlparam = jsonobj.toString();
 
@@ -115,7 +134,11 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
 
             if(response.getInt("code") == 200){
-                activity.startActivity(new Intent(activity,tabView.class));
+                Type mapType = new TypeToken<Map<String,Object>>(){}.getType();
+                Gson gson = new Gson();
+                JSONArray data = response.getJSONArray("data");
+                //eventMap = gson.fromJson(response.getString("data"),mapType);
+                activity.updateSearch(data);
 
             }
             else{

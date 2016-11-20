@@ -77,10 +77,19 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void addFriendClicked(MenuItem item){
+        Intent intent = new Intent(this, addFriend.class);
+        startActivity(intent);
+    }
     public void setupTabsView(View v) {
         getSupportActionBar().show();
         Intent tabViewChange = new Intent(this, tabView.class);
         startActivity(tabViewChange);
+    }
+    public void accountSettingsCLicked(MenuItem item) {
+        Intent accountSettings = new Intent(this, userPage.class);
+        accountSettings.putExtra("Username",LoggedInUser.username);
+        startActivity(accountSettings);
     }
     public void createAccount(View v){
         Intent intent = new Intent(this, CreateNewUser.class);

@@ -3,7 +3,10 @@ package API;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
+import softeng.eventplanning.LoggedInUser;
 import softeng.eventplanning.tabView;
 
 
@@ -95,6 +99,21 @@ public class LogInAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
              if(response.getInt("code") == 200){
                  Log.d("SUP","true");
+                 LoggedInUser.setUsername(response.getString("username"));
+                 LoggedInUser.setBio(response.getString("bio"));
+                 LoggedInUser.setBirthday(response.getString("dob"));
+                 LoggedInUser.setCurrentEventid(response.getString("currentEvent"));
+                 LoggedInUser.setfName(response.getString("fName"));
+                 LoggedInUser.setlName(response.getString("lName"));
+                 LoggedInUser.setFriendsList(response.getString("friendsList"));
+                 LoggedInUser.setUserid(response.getString("id"));
+                 LoggedInUser.setPhone(response.getString("phone"));
+                 LoggedInUser.setFriendsListRaw(response.getString("friendsList"));
+                 LoggedInUser.setEncoded(response.getString("userPic"));
+                 byte[] imgByte = Base64.decode(LoggedInUser.encoded,Base64.DEFAULT);
+                 Bitmap img = BitmapFactory.decodeByteArray(imgByte,0,imgByte.length);
+                 LoggedInUser.setImage(img);
+//                 Log.d("PRINT",LoggedInUser.image.toString());
                  activity.startActivity(new Intent(activity,tabView.class));
 
              }

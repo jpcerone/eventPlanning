@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Make Event Private:"
-        android:id="@+id/switch1"
+        android:id="@+id/publicPrivSwitch"
         android:layout_below="@+id/space"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -43,7 +43,7 @@
     <Space
         android:layout_width="500dp"
         android:layout_height="30dp"
-        android:layout_below="@id/switch1"
+        android:layout_below="@id/publicPrivSwitch"
         android:layout_alignParentLeft="true"
         android:id="@+id/space2"
         />

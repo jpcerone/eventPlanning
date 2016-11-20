@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Profile Settings"
+        android:id="@+id/Profile_Settings"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/userImage"
+        android:src="@drawable/blank_user"
+        android:layout_below="@+id/Profile_Settings"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"/>
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Change..."
+        android:id="@+id/updateImage"
+        android:layout_below="@+id/userImage"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:onClick="selectImage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="First Name:"
+        android:id="@+id/nameText"
+
+        android:layout_below="@+id/Profile_Settings"
+        android:layout_toEndOf="@+id/userImage"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="New Password:"
+        android:id="@+id/newpass"
+        android:layout_above="@+id/confpass"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Confirm Password:"
+        android:id="@+id/confpass"
+        android:layout_marginBottom="129dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Birthday:"
+        android:id="@+id/textView14"
+        android:layout_below="@+id/updateImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bio:"
+        android:id="@+id/bioText"
+        android:layout_below="@+id/textView14"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:maxLines="7"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/bday"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/bio"
+        android:layout_below="@+id/bday"
+        android:layout_alignStart="@+id/bday" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passCheck1"
+        android:layout_alignBottom="@+id/newpass"
+        android:layout_alignStart="@+id/passCheck2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passCheck2"
+        android:layout_alignBottom="@+id/confpass"
+        android:layout_toEndOf="@+id/confpass" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confMsg"
+        android:layout_below="@+id/passCheck2"
+        android:layout_alignParentStart="true"
+        android:text="Enter Password to Confrim Changes:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/currentPass"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:id="@+id/sbmt"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/currentPass"
+        android:layout_marginBottom="10dp"
+        android:onClick="updateSettingsButtonClicked"/>
+
+    <TextView
+        android:text="Phone #:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/updateImage"
+        android:layout_alignStart="@+id/lnameText"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/phoneTxt"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/fname"
+        android:layout_alignBaseline="@+id/nameText"
+        android:layout_alignBottom="@+id/nameText"
+        android:layout_toEndOf="@+id/nameText" />
+
+    <EditText
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/lname"
+        android:layout_alignBaseline="@+id/lnameText"
+        android:layout_alignBottom="@+id/lnameText"
+        android:layout_toEndOf="@+id/lnameText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:text="1-123-456-7890"
+        android:id="@+id/phone"
+        android:layout_alignBaseline="@+id/phoneTxt"
+        android:layout_alignBottom="@+id/phoneTxt"
+        android:layout_alignStart="@+id/lname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lnameText"
+        android:text="Last Name:"
+        android:layout_marginLeft="6dp"
+        android:layout_below="@+id/fname"
+        android:layout_toEndOf="@+id/updateImage"
+        android:layout_marginTop="12dp" />
+
+
+</RelativeLayout>

@@ -23,24 +23,27 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 
+import softeng.eventplanning.SamplePage;
 import softeng.eventplanning.tabView;
 
 
 public class EventAPI extends AsyncTask<String,String,String> {
     private  String[] marray;
-    private int id;
+    private String id;
     private  Map<String,Object> eventMap;
     private tabView activity;
+    private SamplePage sactivity;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(int iid){
+    public  void setsomething(String iid){
         id = iid;
     }
 
     public void tabviewActivity(tabView a){activity = a;}
+    public void eventActivity(SamplePage a){sactivity = a;}
 
     public Map<String,Object> getEventData(){
         return eventMap;
@@ -107,7 +110,13 @@ public class EventAPI extends AsyncTask<String,String,String> {
                 Type mapType = new TypeToken<Map<String,Object>>(){}.getType();
                 Gson gson = new Gson();
                 eventMap = gson.fromJson(response.getString("event"),mapType);
-                activity.updateEvent(eventMap);
+                if(activity == null){
+                    sactivity.updateEvent(eventMap);
+                }
+                else{
+                    activity.updateEvent(eventMap);
+                }
+
 
             }
             else{

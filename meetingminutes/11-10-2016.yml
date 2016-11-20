@@ -1,0 +1,15 @@
+date: November 10, 2016
+meeting_type: group meeting
+attendance: [jpcerone, jawolf, daw24, bcboyle]
+absent: [None]
+excused_absences: [None]
+task_progress: [
+  {ubit: bcboyle, Made progress on the create event API for the client},
+  {ubit: jpcerone, progress: Completed User page, and User page API},
+  {ubit: jawolf, progress: Completed User Phone number update},
+  {ubit: daw24, progress: and Made progress on feed list},
+  ]
+issues: [None]
+Notes: [
+  Added new tasks.
+  ]

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,58 +15,38 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
 
 import softeng.eventplanning.LoggedInUser;
-import softeng.eventplanning.MainActivity;
 import softeng.eventplanning.tabView;
 
-/**
- * Created by brandonboyle on 10/27/16.
- */
 
-public class CreateEventAPI extends AsyncTask<String,String,String> {
-    private  String[] marray;
+public class AddFriendAPI extends AsyncTask<String,String,String> {
+    private  String friendsList;
     private Activity activity;
-    private int pubint;
-    private double[] latlong;
+    private String addedFriend;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
-    public  void setsomething(String[] array){
-        marray = array;
+    public  void setFriendList(String friendsListinput){ friendsList = friendsListinput;
     }
+    public void setNewName(String s){addedFriend = s;}
 
     public void signupActivity(Activity a){activity = a;}
 
-    public void setpub(int i) {pubint = i;}
-
-    public void getlat(double[] ret) {latlong = ret;}
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/create-event");
+        String urlstring = new String(API.serverIP+"/add-friend/"+LoggedInUser.userid);
+
         DataOutputStream printout;
         JSONObject jsonobj = new JSONObject();
 
 
         try{
-            Log.d("myTag", Arrays.toString(latlong));
 
-            jsonobj.put("date",marray[0]);
-            jsonobj.put("time",marray[1]);
-            jsonobj.put("location",marray[2]);
-            jsonobj.put("name",marray[3]);
-            jsonobj.put("description",marray[4]);
-            jsonobj.put("listofPart",marray[5]);
-            jsonobj.put("image",marray[6]);
-            jsonobj.put("owner",marray[7]);
-            jsonobj.put("arrivalNot",marray[8]);
+            jsonobj.put("friendsList",friendsList);
 
-            jsonobj.put("LAT", latlong[0]);
-            jsonobj.put("LONG", latlong[1]);
-            jsonobj.put("public", pubint);
             String urlparam;
             urlparam = jsonobj.toString();
 
@@ -115,6 +94,7 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
             JSONObject response = new JSONObject(result);
 
             if(response.getInt("code") == 200){
+                LoggedInUser.addFriend(addedFriend);
                 activity.startActivity(new Intent(activity,tabView.class));
 
             }
@@ -133,4 +113,3 @@ public class CreateEventAPI extends AsyncTask<String,String,String> {
     }
 
 }
-
