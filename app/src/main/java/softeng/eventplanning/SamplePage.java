@@ -31,7 +31,7 @@ public class SamplePage extends AppCompatActivity {
         setContentView(R.layout.sample_event);
         if(extras!=null){
             EventAPI ep = new EventAPI();
-            ep.setsomething((int)extras.get("id"));
+            ep.setsomething(extras.get("id").toString());
             ep.eventActivity(this);
             ep.execute();
         }
