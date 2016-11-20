@@ -124,10 +124,10 @@ public class tabView extends MainActivity {
         ListView listView = (ListView) findViewById(R.id.searchresults);
         listView.setAdapter(adapter);
 
-        EventAPI event = new EventAPI();
-        event.tabviewActivity(this);
-        event.setsomething(1);//NEED TO CHANGE!!
-        event.execute();
+//        EventAPI event = new EventAPI();
+//        event.tabviewActivity(this);
+//        event.setsomething(1);//NEED TO CHANGE!!
+//        event.execute();
 
         FeedAPI feed = new FeedAPI();
         feed.tabviewActivity(this);
@@ -239,7 +239,7 @@ public class tabView extends MainActivity {
                 }
             }
             Intent intent = new Intent(this,SamplePage.class);
-            intent.putExtra("id",Integer.parseInt(id));
+            intent.putExtra("id",id);
             startActivity(intent);
         }
         catch(Exception e){
@@ -254,7 +254,7 @@ public class tabView extends MainActivity {
                 }
             }
             Intent intent = new Intent(this,SamplePage.class);
-            intent.putExtra("id",Integer.parseInt(id));
+            intent.putExtra("id",id);
             startActivity(intent);
         }
     }

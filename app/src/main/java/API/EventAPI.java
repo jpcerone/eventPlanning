@@ -29,7 +29,7 @@ import softeng.eventplanning.tabView;
 
 public class EventAPI extends AsyncTask<String,String,String> {
     private  String[] marray;
-    private int id;
+    private String id;
     private  Map<String,Object> eventMap;
     private tabView activity;
     private SamplePage sactivity;
@@ -38,7 +38,7 @@ public class EventAPI extends AsyncTask<String,String,String> {
         super.onPreExecute();
     }
 
-    public  void setsomething(int iid){
+    public  void setsomething(String iid){
         id = iid;
     }
 
