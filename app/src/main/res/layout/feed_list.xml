@@ -15,23 +15,15 @@
         android:onClick = "feedEventClicked"
         android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/feedImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Error loading text"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+     <ImageView
+         android:id="@+id/feedImage"
+         android:layout_width="match_parent"
+         android:layout_height="200dp"
+         android:layout_gravity="center"
+         android:layout_weight="1.25"
+         android:onClick = "feedEventClicked"
+         android:src="@drawable/tailgate" />
 
-    <!--
-    <ImageView
-        android:id="@+id/feedImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_weight="1.25"
-        android:src="@drawable/tailgate" />
-    -->
 
     <TextView
         android:id="@+id/feedDesc"
@@ -40,5 +32,6 @@
         android:layout_weight=".5"
         android:textAlignment="center"
         android:text="Error loading text"
+        android:onClick = "feedEventClicked"
         android:textSize="20sp" />
 </LinearLayout>

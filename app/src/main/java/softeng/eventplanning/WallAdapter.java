@@ -2,6 +2,9 @@ package softeng.eventplanning;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +27,7 @@ public class WallAdapter extends BaseAdapter {
     Context context;
     List<WallItem> wallItems;
 
-    public WallAdapter(Context context, List<WallItem> wallItems){
+    public WallAdapter(Context context, List<WallItem> wallItems) {
         this.context = context;
         this.wallItems = wallItems;
     }
@@ -46,28 +49,29 @@ public class WallAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView event_title;
-        TextView event_pic;
-        //ImageView event_pic;
+        //TextView event_pic;
+        ImageView event_pic;
         TextView event_desc;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder vh = null;
 
         LayoutInflater li = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        if (convertView == null){
+        if (convertView == null) {
             convertView = li.inflate(R.layout.feed_list, null);
             vh = new ViewHolder();
-            vh.event_title = (TextView)convertView.findViewById(R.id.feedTitle);
-            vh.event_pic = (TextView)convertView.findViewById(R.id.feedImage);
-            //vh.event_pic = (ImageView)convertView.findViewById(R.id.feedImage);
-            vh.event_desc = (TextView)convertView.findViewById(R.id.feedDesc);
-
             WallItem pos = wallItems.get(position);
+            vh.event_title = (TextView) convertView.findViewById(R.id.feedTitle);
+            vh.event_pic = (ImageView) convertView.findViewById(R.id.feedImage);
+            vh.event_pic.setTag(pos.getEvent_title());
+            //System.out.println("tag is "+vh.event_pic.getTag());
+            vh.event_desc = (TextView) convertView.findViewById(R.id.feedDesc);
+
 
             vh.event_title.setText(pos.getEvent_title());
-            vh.event_pic.setText(pos.getEvent_pic_id());
-            //vh.event_pic.setImageResource(Integer.parseInt(pos.getEvent_pic_id()));
+            vh.event_pic.setImageBitmap(pos.getEvent_pic_id());
             vh.event_desc.setText(pos.getEvent_desc());
         }
         return convertView;
