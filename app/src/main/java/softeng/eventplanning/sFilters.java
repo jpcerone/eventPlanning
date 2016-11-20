@@ -55,6 +55,7 @@ public class sFilters extends AppCompatActivity {
         intent.putExtra("radius",radius);
         intent.putExtra("publicpriv",publicpriv);
         intent.putExtra("date",date);
+        intent.putExtra("tab",2);
         startActivity(intent);
     }
 
