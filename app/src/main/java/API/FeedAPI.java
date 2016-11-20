@@ -41,7 +41,7 @@ public class FeedAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String ... params) {
-        String urlstring = new String(API.serverIP+"/get-event/1");
+        String urlstring = new String(API.serverIP+"/get-event/0");
         DataOutputStream printout;
 
         try{
@@ -82,9 +82,11 @@ public class FeedAPI extends AsyncTask<String,String,String> {
 
                 Type mapType = new TypeToken<HashMap<String, Object>>(){}.getType();
                 Gson gson = new Gson();
-                feedMap = gson.fromJson(response.getString("event"), mapType);
-                System.out.println("API "+ feedMap);
-                activity.setFeedArrays(feedMap);
+                for(int count = 0; count < response.length(); count++) {
+                    feedMap = gson.fromJson(response.getString("event" + Integer.toString(count)), mapType);
+                    System.out.println("API " + feedMap);
+                    activity.setFeedArrays(feedMap);
+                }
             }
             else{
                 int duration = Toast.LENGTH_SHORT;

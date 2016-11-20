@@ -50,6 +50,7 @@ public class tabView extends MainActivity {
     ArrayList event_titles = new ArrayList();
     ArrayList event_pics = new ArrayList();
     ArrayList event_descs = new ArrayList();
+    ArrayList event_ids = new ArrayList();
     ArrayList wallItems = new ArrayList<WallItem>();
     String date;
     Map<String,Integer> eventMap;
@@ -193,6 +194,20 @@ public class tabView extends MainActivity {
         listView.setAdapter(adapter);
     }
 
+    public void feedEventClicked(View v){
+        TextView temp = (TextView) v;
+        String id = "";
+        for(int i = 0; i < event_titles.size(); i++){
+            if(event_titles.get(i) == temp.getText().toString()){
+                System.out.println(event_titles.get(i));
+                System.out.println(event_ids.get(i));
+                id = (String) event_ids.get(i);
+            }
+        }
+        Intent intent = new Intent(this,SamplePage.class);
+        intent.putExtra("id",Integer.parseInt(id));
+        startActivity(intent);
+    }
 
     public void setFeedArrays(Map<String,Object> eventInfo){
 
@@ -203,14 +218,16 @@ public class tabView extends MainActivity {
         System.out.println(event_pics+" setFeedArray");
         event_descs.add(eventInfo.get("description"));
         System.out.println(event_descs+" setFeedArray");
+        event_ids.add(eventInfo.get("id"));
+        System.out.println(event_descs+" setFeedArray");
+        wallItems.clear();
 
         for (int i = 0; i < event_titles.size(); i++) {
             WallItem item = new WallItem(event_titles.get(i), event_pics.get(i),
-                    event_descs.get(i));
+                    event_descs.get(i), event_ids.get(i));
             System.out.println("Wall Item title: "+item.getEvent_title());
             wallItems.add(item);
         }
-
 
         ListView listView = (ListView) findViewById(R.id.feed_listView);
         WallAdapter wAdapter = new WallAdapter(this, wallItems);
