@@ -1,18 +1,21 @@
 package softeng.eventplanning;
 
 
+import android.graphics.Bitmap;
+
 /**
  * Created by David on 10/27/2016.
  */
 public class WallItem {
     private String event_title;
-    private String event_pic_id;
+    private Bitmap event_pic_id;
     private String event_desc;
     private String event_id;
+    private String event_encoded;
 
     public WallItem(Object event_title, Object event_pic_id, Object event_desc, Object event_id){
         this.event_title = event_title.toString();
-        this.event_pic_id = event_pic_id.toString();
+        this.event_pic_id = (Bitmap) event_pic_id;
         this.event_desc = event_desc.toString();
         this.event_id = event_id.toString();
     }
@@ -21,7 +24,8 @@ public class WallItem {
         return event_title;
     }
 
-    public String getEvent_pic_id(){
+
+    public Bitmap getEvent_pic_id(){
 
         return event_pic_id;
     }
@@ -40,7 +44,7 @@ public class WallItem {
         this.event_title = event_title;
     }
 
-    public void setEvent_pic_id(String event_pic_id){
+    public void setEvent_pic_id(Bitmap event_pic_id){
         this.event_pic_id = event_pic_id;
     }
 

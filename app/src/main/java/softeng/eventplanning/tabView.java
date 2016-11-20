@@ -3,6 +3,8 @@ package softeng.eventplanning;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +22,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -51,6 +55,7 @@ public class tabView extends MainActivity {
     ArrayList event_pics = new ArrayList();
     ArrayList event_descs = new ArrayList();
     ArrayList event_ids = new ArrayList();
+    ArrayList event_encodeds = new ArrayList();
     ArrayList wallItems = new ArrayList<WallItem>();
     String date;
     Map<String,Integer> eventMap;
@@ -216,46 +221,71 @@ public class tabView extends MainActivity {
     }
 
     public void feedEventClicked(View v){
-        TextView temp = (TextView) v;
-        String id = "";
-        for(int i = 0; i < event_titles.size(); i++){
-            if(event_titles.get(i) == temp.getText().toString()){
-                System.out.println(event_titles.get(i));
-                System.out.println(event_ids.get(i));
-                id = (String) event_ids.get(i);
+        try {
+            TextView temp = (TextView) v;
+            String id = "";
+            //System.out.println(temp.getText().toString());
+            for (int i = 0; i < event_titles.size(); i++) {
+                System.out.println(event_pics.get(i));
+                if (event_titles.get(i) == temp.getText().toString()) {
+                    //System.out.println(event_titles.get(i));
+                    //System.out.println(event_ids.get(i));
+                    id = (String) event_ids.get(i);
+                }
+                else if (event_descs.get(i) == temp.getText().toString()) {
+                    //System.out.println(event_descs.get(i));
+                    //System.out.println(event_ids.get(i));
+                    id = (String) event_ids.get(i);
+                }
             }
+            Intent intent = new Intent(this,SamplePage.class);
+            intent.putExtra("id",Integer.parseInt(id));
+            startActivity(intent);
         }
-        Intent intent = new Intent(this,SamplePage.class);
-        intent.putExtra("id",Integer.parseInt(id));
-        startActivity(intent);
+        catch(Exception e){
+            ImageView temp = (ImageView) v;
+            String id = "";
+            //System.out.println(temp.getTag());
+            for (int i = 0; i < event_titles.size(); i++) {
+                //System.out.println(event_encodeds.get(i).toString());
+                if (event_titles.get(i).toString() == temp.getTag()) {
+                    //System.out.println(event_ids.get(i));
+                    id = (String) event_ids.get(i);
+                }
+            }
+            Intent intent = new Intent(this,SamplePage.class);
+            intent.putExtra("id",Integer.parseInt(id));
+            startActivity(intent);
+        }
     }
 
     public void setFeedArrays(Map<String,Object> eventInfo){
 
-        System.out.println("1 "+eventInfo);
+        //System.out.println("1 "+eventInfo);
         event_titles.add(eventInfo.get("name"));
-        System.out.println(event_titles+" setFeedArray");
-        event_pics.add(eventInfo.get("image"));
-        System.out.println(event_pics+" setFeedArray");
+        //System.out.println(event_titles+" setFeedArray");
+        //String thing = (String) eventInfo.get("image");
+        event_encodeds.add(eventInfo.get("image"));
+        byte[] imgByte = Base64.decode((String) eventInfo.get("image"), Base64.DEFAULT);
+        Bitmap img = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+        event_pics.add(img);
+        //System.out.println(event_pics+" setFeedArray");
         event_descs.add(eventInfo.get("description"));
-        System.out.println(event_descs+" setFeedArray");
+        //System.out.println(event_descs+" setFeedArray");
         event_ids.add(eventInfo.get("id"));
-        System.out.println(event_descs+" setFeedArray");
+        //System.out.println(event_ids+" setFeedArray");
         wallItems.clear();
-
+        System.out.println(event_titles.size());
         for (int i = 0; i < event_titles.size(); i++) {
             WallItem item = new WallItem(event_titles.get(i), event_pics.get(i),
                     event_descs.get(i), event_ids.get(i));
-            System.out.println("Wall Item title: "+item.getEvent_title());
+            //System.out.println("Wall Item title: "+item.getEvent_title());
             wallItems.add(item);
         }
 
         ListView listView = (ListView) findViewById(R.id.feed_listView);
         WallAdapter wAdapter = new WallAdapter(this, wallItems);
-        //WallAdapter wAdapter = new WallAdapter(getApplicationContext(), R.layout.feed_list, wallItems);
         listView.setAdapter(wAdapter);
-        //TODO clickng the wall item takes you to event page.
-        //listView.setOnClickListener(this);
     }
 
     public double[] getLatLong(){

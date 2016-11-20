@@ -73,7 +73,7 @@ public class FeedAPI extends AsyncTask<String,String,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        System.out.println("what's this"+result);
+        //System.out.println("what's this"+result);
         try{
             JSONObject response = new JSONObject(result);
             if(response.getInt("code") == 200){
@@ -82,9 +82,10 @@ public class FeedAPI extends AsyncTask<String,String,String> {
 
                 Type mapType = new TypeToken<HashMap<String, Object>>(){}.getType();
                 Gson gson = new Gson();
-                for(int count = 0; count < response.length(); count++) {
+                //System.out.println(response.length());
+                for(int count = 0; count < response.length()-2; count++) {
                     feedMap = gson.fromJson(response.getString("event" + Integer.toString(count)), mapType);
-                    System.out.println("API " + feedMap);
+                    //System.out.println("API " + feedMap);
                     activity.setFeedArrays(feedMap);
                 }
             }
@@ -97,7 +98,7 @@ public class FeedAPI extends AsyncTask<String,String,String> {
             }
         }
         catch(Exception e){
-            Log.d("fail", e.toString());
+            Log.d("fail here", e.toString());
         }
     }
 }
