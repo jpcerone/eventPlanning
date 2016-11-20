@@ -3,7 +3,12 @@ package API;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -70,13 +75,14 @@ public class SearchAPI extends AsyncTask<String,String,String> {
 
 
         try{
+            double[] loc = activity.getLatLong();
             jsonobj.put("dist",dist/10);
             jsonobj.put("time_to",timeTo);
             jsonobj.put("time_frm",timeFrom);
             jsonobj.put("public",publicpriv);
             jsonobj.put("title",title);
-            jsonobj.put("lat",70.1);
-            jsonobj.put("long",60.0);
+            jsonobj.put("lat",loc[0]);
+            jsonobj.put("long",loc[1]);
 
 
 
