@@ -17,46 +17,43 @@ import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 
 
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioButton;
+
 import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -87,15 +84,18 @@ public class createEvent extends AppCompatActivity  {
         private String Edesc;
         private String locS;
         private String event_name;
-        private String pub;
+        private String listOfParts = "";
+
+        private int pub;
         private static int RESULT_LOAD_IMG=0;
         private static int REQUEST_READ;
-        private byte[] imgByte = null;
+        private byte[] bytes = null;
         String _encoded;
         private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
+        private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 11;
 
 
         @Override
@@ -104,19 +104,29 @@ public class createEvent extends AppCompatActivity  {
             setContentView(R.layout.create_event_new);
 
             final String[] create_event = new String[13];
+            Log.d("myTag", Arrays.toString(create_event));
             final EditText description = (EditText) findViewById(R.id.Desc);
             final EditText eventTitle = (EditText) findViewById(R.id.eventT);
             final TextView date_v = (TextView) findViewById(R.id.date_view);
             final TextView time_v = (TextView) findViewById(R.id.time_view);
-            final EditText location = (EditText) findViewById(R.id.loc);
+            final EditText locat = (EditText) findViewById(R.id.loc);
             final String user = LoggedInUser.username;
 
             Edesc = description.getText().toString();
             event_name = eventTitle.getText().toString();
-            locS = location.getText().toString();
+            locS = locat.getText().toString();
+
+
+
+            for(int i=0;i<LoggedInUser.friendsList.size();i++){
+                CheckBox rbtn = new CheckBox(this);
+                rbtn.setId(i);
+                rbtn.setText(LoggedInUser.friendsList.get(i));
+                ((ViewGroup)findViewById(R.id.checkBoxGroup)).addView(rbtn);
+
+            }
 
             final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
-
 
 
             final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -170,32 +180,39 @@ public class createEvent extends AppCompatActivity  {
                     updateDate(date_v);
                     Log.d("date", date1);
                     Log.d("time", time);
+
+
                     if (checkBox.isChecked()) {
-                        pub = "1";
+                        pub = 1;
                     } else {
-                        pub = "0";
+                        pub = 0;
                     }
                     Edesc = description.getText().toString();
                     event_name = eventTitle.getText().toString();
-                    locS = location.getText().toString();
+                    locS = locat.getText().toString();
+                    LinearLayout layout = (LinearLayout)findViewById(R.id.checkBoxGroup);
+                    formIsValid(layout);
                     if (CheckFields() == true) {
                         create_event[0] = date1;
                         create_event[1] = time;
                         create_event[2] = locS;
                         create_event[3] = event_name;
                         create_event[4] = Edesc;
-                        create_event[5] = "friends";
+                        create_event[5] = listOfParts;
                         create_event[6] = _encoded;
                         create_event[7] = user;
-                        create_event[10] = "42.0";
-                        create_event[11] = "15.63";
-                        create_event[12] = pub;
+                        create_event[8] = "yes";
+
+                        double[] ret = getLatLong();
 
                         final CreateEventAPI asyncT = createAsyncTask();
+                        asyncT.getlat(ret);
+                        asyncT.setpub(pub);
                         asyncT.setsomething(create_event);
 
                         asyncT.execute();
                     }
+
                 }
             });
         }
@@ -206,6 +223,30 @@ public class createEvent extends AppCompatActivity  {
         startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
     }
 
+    public double[] getLatLong(){
+        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                MY_PERMISSION_ACCESS_FINE_LOCATION );
+        }
+
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        double[] ret = new double[2];
+        if (location != null) {
+
+            ret[0] = location.getLongitude();
+           ret[1] = location.getLatitude();
+
+        }
+        else{
+
+            ret[0] = 43.0;
+            ret[1] = 78.789;
+
+        }
+        Log.d("myTag", Arrays.toString(ret));
+
+        return ret;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -248,8 +289,6 @@ public class createEvent extends AppCompatActivity  {
 //                imgMap.compress(Bitmap.CompressFormat.JPEG,100,ba);
 //                byte[] bArray = ba.toByteArray();
 
-
-
                 ImageView imgView = (ImageView) findViewById(R.id.imageView6);
                 // Set the Image in ImageView after decoding the String
                 imgView.setImageBitmap(imgMap);
@@ -281,6 +320,19 @@ public class createEvent extends AppCompatActivity  {
         CreateEventAPI api = new CreateEventAPI();
         api.signupActivity(this);
         return api;
+    }
+    public void formIsValid(LinearLayout layout) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            CheckBox v = (CheckBox) layout.getChildAt(i);
+            if (v.isChecked()) {
+                if (listOfParts.equals("")) {
+                    listOfParts = listOfParts + v.getText().toString();
+                } else {
+                    listOfParts = listOfParts + " " + v.getText().toString();
+                }
+
+            }
+        }
     }
 
     private boolean CheckFields(){
